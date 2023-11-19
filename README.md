@@ -35,23 +35,7 @@
 > [!NOTE]
 > db.json stanowi bazę danych możliwe do swobodnej modyfikacji
 
-**1. Instalacja json-server:**
-
-   ```
-    npm install -g json-server
-   ```
-
-**3. Uruchomienie REST API:**
-
-   ```
-    cd json-server
-   
-    json-server db.json
-   ```
-
-**5. W konsoli pojawi się komunikat z linkiem do localhosta**
-
-**6. Testy REST API można przeprowadzić za pomocą np. Postmana**
+**Serwer jest teraz dostępny publicznie pod adresem: https://my-json-server.typicode.com/Blackkoutt/Car_Rental_Project**
 
 
 # Generowanie przykładowych danych
