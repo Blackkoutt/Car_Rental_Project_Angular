@@ -2,7 +2,7 @@
     "vehicle":[
         {
             "id":1,
-            "manufacterer": "BMW",
+            "manufacturer": "BMW",
             "model": "e46",
             "date_of_manufacture":"01.01.2000",
             "available_count": 78,
