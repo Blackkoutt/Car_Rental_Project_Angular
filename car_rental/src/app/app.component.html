@@ -1,23 +1,28 @@
-<table>
-  <thead>
-    <th>Manufacturer</th>
-    <th>Model</th>
-    <th>Date of manufacture</th>
-    <th>Available Count</th>
-    <th>Rental Cost</th>
-    <th>Seats Count</th>
-    <th>GearBox</th>
-    <th>Type</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let car of cars">
-      <td>{{car.Manufacturer}}</td>
-      <td>{{car.Model}}</td>
-      <td>{{car.DateOfManufacture}}</td>
-      <td>{{car.AvailableCount}}</td>
-      <td>{{car.SeatsCount}}</td>
-      <td>{{car.GearBox}}</td>
-      <td>{{car.Type}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-div">
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Manufacturer</th>
+        <th scope="col">Model</th>
+        <th scope="col">Date of manufacture</th>
+        <th scope="col">Available Count</th>
+        <th scope="col">Rental Cost</th>
+        <th scope="col">Seats Count</th>
+        <th scope="col">GearBox</th>
+        <th scope="col">Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let car of cars">
+        <td>{{car.Manufacturer}}</td>
+        <td>{{car.Model}}</td>
+        <td>{{car.DateOfManufacture}}</td>
+        <td>{{car.AvailableCount}}</td>
+        <td>{{car.RentalCost}}</td>
+        <td>{{car.SeatsCount}}</td>
+        <td>{{car.GearBox}}</td>
+        <td>{{car.Type}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
