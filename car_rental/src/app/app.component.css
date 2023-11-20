@@ -1,5 +1,19 @@
 .table-div{
+    font-size:0.8rem;
     width:60%;
     margin-right: auto;
     margin-left: auto;
+}
+.topbar{
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+}
+.logo>h1{
+    font-size: 2.2rem;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    letter-spacing: 0.1rem;
+}
+header{
+    margin-bottom: 2rem;
 }
