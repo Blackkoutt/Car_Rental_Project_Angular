@@ -1,0 +1,40 @@
+<div class="edit-outer-div" *ngIf="car">
+    <h2>Edycja samochodu:</h2>
+    <div class="edit-inner-div">
+        <div>
+            <label for="manufacturer">Producent:</label>
+            <input name="manufacturer" type="text" [(ngModel)]="car.Manufacturer" placeholder="Producent">
+        </div>
+        <div>
+            <label for="model">Model:</label>
+            <input name="model" type="text" [(ngModel)]="car.Model" placeholder="Model">
+        </div>
+        <div>
+            <label for="date_of_manufacture">Data produkcji:</label>
+            <input name="date_of_manufacture" type="text" [(ngModel)]="car.DateOfManufacture" placeholder="Data produkcji">
+        </div>
+        <div>
+            <label for="available_count">Liczba dostępnych:</label>
+            <input name="available_count" type="text" [(ngModel)]="car.AvailableCount" placeholder="Liczba dostępnych">
+        </div>
+        <div>
+            <label for="rental_cost">Koszt wynajmu:</label>
+            <input name="rental_cost" type="text" [(ngModel)]="car.RentalCost" placeholder="Koszt wynajmu">
+        </div>
+        <div>
+            <label for="seats_count">Liczba miejsc:</label>
+            <input name="seats_count" type="text" [(ngModel)]="car.SeatsCount" placeholder="Liczba miejsc">
+        </div>
+        <div>
+            <label for="gearbox">Skrzynia biegów:</label>
+            <input name="gearbox" type="text" [(ngModel)]="car.GearBox" placeholder="Skrzynia biegów">
+        </div>
+        <div>
+            <label for="type">Typ:</label>
+            <input name="type" type="text" [(ngModel)]="car.Type" placeholder="Typ">
+        </div>
+    </div>
+    <div>
+        <button (click)="updateCar(car)" type="submit">Zatwierdź</button>
+    </div>
+</div>

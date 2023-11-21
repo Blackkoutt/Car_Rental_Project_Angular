@@ -1,0 +1,25 @@
+.table-div{
+    font-size:0.8rem;
+    width:60%;
+    margin-right: auto;
+    margin-left: auto;
+    animation: zoomIn .5s ease-in-out;
+}
+.modify_car{
+    display: flex;
+    background-color: black;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+@keyframes zoomIn{
+    0%{
+        opacity:0;
+        transform:scale(0);
+    }
+    100%{
+        opacity:1;
+        transform: scale(1);
+    }
+}

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-//import { CarData } from './models/car-data';
-//import { CarService } from './services/car.service';
+import { CarData } from 'src/app/models/car-data';
+import { CarService } from 'src/app/services/car.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-show-list',
+  templateUrl: './show-list.component.html',
+  styleUrls: ['./show-list.component.css']
 })
-export class AppComponent {
-  /*title = 'car_rental';
+export class ShowListComponent {
+  title = 'car_rental';
   cars: CarData[] = [];
   carToEdit?:CarData;
 
@@ -47,5 +47,5 @@ export class AppComponent {
         return old_car;
       }
     })
-  }*/
+  }
 }

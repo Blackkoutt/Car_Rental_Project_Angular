@@ -9,7 +9,9 @@ export class CarData{
                 private seats_count:number,
                 private gearbox:boolean,
                 private type:string){}
-    
+    get Id():number{
+        return this.id;
+    }
     get Manufacturer():string{
         return this.manufacturer;
     }
