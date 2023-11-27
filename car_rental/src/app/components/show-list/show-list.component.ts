@@ -46,6 +46,7 @@ export class ShowListComponent {
       else{
         return old_car;
       }
-    })
+    });
+    this.carToEdit=undefined;
   }
 }

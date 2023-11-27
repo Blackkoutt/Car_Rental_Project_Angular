@@ -4,21 +4,21 @@
       "id": "1",
       "manufacturer": "Opel",
       "model": "Corsa",
-      "date_of_manufacture": "01.01.2000",
+      "date_of_manufacture": "06.01.2010",
       "available_count": 78,
       "rental_cost": 100,
-      "seats_count": 7,
-      "gearbox": true,
+      "seats_count": 5,
+      "gearbox": false,
       "type": "Sedan"
     },
     {
       "id": "2",
       "manufacturer": "BMW",
       "model": "e36",
-      "date_of_manufacture": "01.01.2000",
+      "date_of_manufacture": "01.01.2010",
       "available_count": 78,
       "rental_cost": 100,
-      "seats_count": 7,
+      "seats_count": "5",
       "gearbox": true,
       "type": "Sedan"
     }

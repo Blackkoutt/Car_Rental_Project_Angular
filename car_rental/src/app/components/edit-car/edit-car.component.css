@@ -1,10 +1,66 @@
-.edit-outer-div{
+.edit-outer-div>form{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.edit-outer-div{
+.edit-inner-div{
     display: flex;
-    justify-content: right;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap:3rem;
+}
+.form_input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    font-size:0.9rem;
+    background: linear-gradient(90deg, rgb(82, 18, 192), transparent) #956ced;
+    /*background-color: #40234e;*/
+}
+.text-danger{
+    text-align: center;
+}
+.half>.form_input>input{  
+    width:12rem;
+    border-radius: 5px;
+}
+.half>.form_input>label{  
+    margin-left: 0.4rem;
+}
+select{
+    width:12rem;
+    height: 1.3rem;
+    border:none;
+    border-radius: 5px;
+}
+input[type="submit"]{
+   font-size: 0.9rem;
+   border: none;
+   color:#fff;
+   border-radius: 5px;
+   padding: 0.2rem 0.3rem 0.2rem 0.3rem;
+   transition: background-color 1s;
+   font-weight: bold;
+   /*background: linear-gradient(90deg, #3f51b5, transparent) #2196f3;*/
+   background: linear-gradient(90deg, rgb(82, 18, 192), transparent) #956ced;
+   animation: slideTop 1s ease forwards;
+}
+input[type="submit"]:hover{
+    background-color: rgb(30, 233, 125);
+    color: #fff;
+}
+@keyframes slideTop {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

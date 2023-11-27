@@ -22,7 +22,7 @@
           <td>{{car.AvailableCount}}</td>
           <td>{{car.RentalCost}}</td>
           <td>{{car.SeatsCount}}</td>
-          <td>{{car.GearBox}}</td>
+          <td>{{ car.GearBox ? 'Automatyczna' : 'Manualna' }}</td>
           <td>{{car.Type}}</td>
           <td>
             <button (click)="editCar(car)">Modyfikuj</button>
