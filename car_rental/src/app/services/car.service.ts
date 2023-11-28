@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {CarData} from '../models/car-data';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -15,11 +16,22 @@ export class CarService {
   public getCars():Observable<CarData[]>{
     return this.http.get<CarData[]>(`${environment.apiUrl}/${this.url}`);
   }
+  public getNextId(): Observable<number> {
+    return this.getCars().pipe(
+      map(cars => {
+        const lastCar:CarData = cars[cars.length - 1];
+        return lastCar ? +lastCar["id"] + 1 : 1;
+      })
+    );
+  }
+  public getOneCar(id:number):Observable<CarData>{
+    return this.http.get<CarData>(`${environment.apiUrl}/${this.url}/${id}`);
+  }
   public updateCar(car:CarData):Observable<CarData>{
     return this.http.put<CarData>(`${environment.apiUrl}/${this.url}/${car.Id}`, car);
   }
-  public createCar(car:CarData):Observable<CarData[]>{
-    return this.http.post<CarData[]>(`${environment.apiUrl}/${this.url}`, car);
+  public createCar(car:CarData):Observable<CarData>{
+    return this.http.post<CarData>(`${environment.apiUrl}/${this.url}`, car);
   }
   public deleteCar(car:CarData):Observable<CarData[]>{
     return this.http.delete<CarData[]>(`${environment.apiUrl}/${this.url}/${car.Id}`);

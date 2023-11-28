@@ -12,6 +12,9 @@ export class CarData{
     get Id():number{
         return this.id;
     }
+    /*set Id(value:number){
+        this.id=value;
+    }*/
     get Manufacturer():string{
         return this.manufacturer;
     }

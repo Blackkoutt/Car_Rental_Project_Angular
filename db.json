@@ -109,6 +109,17 @@
       "seats_count": "5",
       "gearbox": true,
       "type": "Sedan"
+    },
+    {
+      "id": 11,
+      "manufacturer": "BMff",
+      "model": "AAA",
+      "date_of_manufacture": "01.11.2023",
+      "available_count": 5,
+      "rental_cost": 5,
+      "seats_count": 5,
+      "gearbox": true,
+      "type": "Sedan"
     }
   ]
 }
