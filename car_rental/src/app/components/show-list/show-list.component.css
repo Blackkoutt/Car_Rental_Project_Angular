@@ -1,9 +1,80 @@
+.filter{
+    display:flex;
+    flex-direction: row;
+    width: 55vw;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0,0,0,0.6);
+    border-radius: 8px;
+    border: 0.2rem solid rgb(104, 57, 184);
+    padding: 1rem 0 1rem 0;
+    margin-bottom: 1rem;
+}
+.search_div>input{
+    border: none;
+    border-radius: 5px;
+}
+.search_div>select{
+    border: none;
+    border-radius: 5px;
+}
+.search_div>label{
+    margin-left: 0.2rem;
+}
+.action_buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+.modify_button{
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 0.1rem 0.2rem 0.1rem 0.2rem;
+    background:linear-gradient(90deg, rgb(1, 106, 1), transparent) rgb(34, 213, 17);
+    margin-right: 0.5rem;
+}
+.details_button{
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 0.1rem 0.2rem 0.1rem 0.2rem;
+    background:linear-gradient(90deg, rgb(141, 84, 0), transparent) rgb(223, 157, 25);
+    margin-right: 0.5rem;
+}
+.delete_button{
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 0.1rem 0.2rem 0.1rem 0.2rem;
+    background:linear-gradient(90deg, rgb(131, 0, 0), transparent) rgb(255, 41, 41);
+}
+.search_div{
+    background: linear-gradient(90deg, rgb(82, 18, 192), transparent) #956ced;
+    border-radius: 5px;
+    display:flex;
+    flex-direction: column;
+    width: 12rem;
+    font-size: 0.9rem;
+}
+.search_div:nth-child(2){
+    margin-left: 4rem;
+}
 .table-div{
     font-size:0.8rem;
     width:60%;
-    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
     margin-left: auto;
-    animation: zoomIn .5s ease-in-out;
+    margin-right: auto;
+    animation: ZoomIn .5s ease-in-out;
 }
 .modify_car{
     display: flex;
@@ -13,13 +84,24 @@
     justify-content: center;
     flex-wrap: wrap;
 }
-@keyframes zoomIn{
-    0%{
-        opacity:0;
-        transform:scale(0);
+@media(max-width:950){
+    .search_div{
+        width:10rem;
     }
-    100%{
-        opacity:1;
-        transform: scale(1);
+}
+@media(max-width:1250px){
+    .search_div:nth-child(2){
+        margin-left: 1rem;
+    }
+}
+@media(max-width:900px){
+    .filter{
+        flex-direction: column;
+    }
+    .search_div:nth-child(2){
+        margin-left: 0;
+    }
+    .search_div:first-child{
+        margin-bottom: 1rem;
     }
 }

@@ -1,5 +1,24 @@
 <div class="table-div">
-    <table class="table table-dark table-hover">
+  <div class="filter">
+    <div class="search_div">
+      <label for="select_criteria">Szukaj według</label>
+      <select id="select_criteria" [formControl]="searchCriteriaControl">
+        <option value="manufacturer">Producent</option>
+        <option value="model">Model</option>
+        <option value="date_of_manufacture">Data produkcji</option>
+        <option value="available_count">Liczba dostępnych</option>
+        <option value="rental_cost">Koszt wynajęcia</option>
+        <option value="seats_count">Liczba miejsc</option>
+        <option value="gearbox">Skrzynia biegów</option>
+        <option value="type">Typ</option>
+      </select>
+    </div>
+    <div class="search_div">
+      <label for="search">Wyszukaj</label>
+      <input id="search" type="text" [formControl]="searchValueControl" />
+    </div>
+  </div>
+    <table class="table table-dark table-hovers table-responsive">
       <thead>
         <tr>
           <th scope="col">Producent</th>
@@ -13,22 +32,23 @@
           <th scope="col">Akcja</th>
         </tr>
       </thead>
-      <tbody>
-        <ng-container *ngFor="let car of cars">
+      <tbody  class="table-group-divider">
+        <ng-container *ngFor="let car of cars | searchCar: searchValue:searchCriteria">
         <tr>
           <td>{{car.Manufacturer}}</td>
           <td>{{car.Model}}</td>
           <td>{{car.DateOfManufacture}}</td>
           <td>{{car.AvailableCount}}</td>
-          <td>{{car.RentalCost}}</td>
+          <td>{{car.RentalCost| currency:'zł':'symbol':'1.2-2'}}</td>
           <td>{{car.SeatsCount}}</td>
           <td>{{ car.GearBox ? 'Automatyczna' : 'Manualna' }}</td>
           <td>{{car.Type}}</td>
-          <td>
-            <button (click)="editCar(car)">Modyfikuj</button>
+          <td class="action_buttons">
+            <!-- <button appChangeEditButton [carInput]="car" (outputCarEvent)="fun($event)" (click)="editCar(car)">Modyfikuj</button> -->
+            <button class="modify_button" appChangeEditButton [carInput]="car" (outputCarEvent)="editCar($event)">Modyfikuj</button>
             <!--<a [routerLink]="['/modify',car.Id]" ><button (click)="editCar(car)">Modyfikuj</button></a>-->
-            <a href="#"><button>Szczegóły/Wynajem</button></a>
-            <a href="#"><button>Usuń</button></a>
+            <a href="#"><button class="details_button">Szczegóły/Wynajem</button></a>
+            <button (click)="DeleteCar(car)" class="delete_button">Usuń</button>
           </td>     
         </tr>
         <tr *ngIf="carToEdit===car">

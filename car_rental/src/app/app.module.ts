@@ -8,11 +8,15 @@ import { EditCarComponent } from './components/edit-car/edit-car.component';
 import { FormsModule } from '@angular/forms';
 import { ShowListComponent } from './components/show-list/show-list.component';
 import { RouterModule, Routes } from '@angular/router';
+import { SearchCarPipe } from './pipes/search-car.pipe';
+import { ChangeEditButtonDirective } from './directives/change-edit-button.directive';
+import { ScrollToDirective } from './directives/scroll-to.directive';
+import { AddCarComponent } from './components/add-car/add-car.component';
 
 const routes: Routes =
 [
   {path:'', component: ShowListComponent},
-  {path:'modify/:id', component: EditCarComponent} 
+  {path:'add', component: AddCarComponent} 
   // tutaj jeszcze not found component
 ]
 
@@ -20,7 +24,11 @@ const routes: Routes =
   declarations: [
     AppComponent,
     EditCarComponent,
-    ShowListComponent
+    ShowListComponent,
+    SearchCarPipe,
+    ChangeEditButtonDirective,
+    ScrollToDirective,
+    AddCarComponent
   ],
   imports: [
     BrowserModule,

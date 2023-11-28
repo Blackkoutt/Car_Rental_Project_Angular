@@ -1,13 +1,120 @@
 .topbar{
     display: flex;
     flex-direction: row;
-    background-color: black;
+    justify-content: space-between;
+    align-items: center; 
+    /*background-color: #191d21;*/
 }
-.logo>h1{
-    font-size: 2.2rem;
+.nav-list{
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2rem;
+}
+.nav-list li:nth-child(2){
+    margin: 0 1.5rem 0 1.5rem;
+}
+.nav-list li a:hover{
+    color: #8824f9;
+}
+.logo>a>h1{
+    font-size: 3rem;
     padding: 0.5rem 0 0.5rem 0.5rem;
     letter-spacing: 0.1rem;
+    margin-left: 0.5rem;
 }
-header{
-    margin-bottom: 2rem;
+.second_part_logo{
+    background: linear-gradient(90deg, rgb(59, 3, 157), transparent) rgb(167, 129, 249);
+    background-clip: text;
+    color: transparent;
+}
+.first_part_logo{
+    background: linear-gradient(90deg, rgb(155, 155, 155), transparent) rgb(255, 255, 255);
+    background-clip: text;
+    color: transparent;
+}
+#main-article{
+    width:65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+}
+#info{
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.welcome>input[type="button"]{
+    background-color: #8824f9;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    color:#fff;
+    padding: 0.4rem;
+    transition: 2s ease forwards;
+    animation: SlideTop 2s ease forwards;
+}
+.welcome>input[type="button"]:hover{
+    background-color: #6602d7;
+    transform: translateY(1px);
+    cursor: pointer;
+}
+.welcome>h2{
+    font-size: 2rem;
+    animation: SlideRight 2s ease forwards;
+}
+.welcome>p{
+    font-size: 1rem;
+    animation: SlideLeft 2s ease forwards;
+}
+
+
+.socials{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4.5rem;
+    margin-top: 3rem;
+    background-color: #191d21;
+}
+.insta{
+    padding: 1rem 2rem 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fb{
+    padding: 1rem 2rem 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.x{
+    padding: 1rem 2rem 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.insta:hover{
+    background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040, #FFDC80);;
+}
+.fb:hover{
+    background-color: #1877F2;
+}
+.x:hover{
+    background-color: #1DA1F2;
+}
+.end{  
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 0.5rem; 
 }

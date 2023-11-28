@@ -53,10 +53,52 @@ input[type="submit"]:hover{
     background-color: rgb(30, 233, 125);
     color: #fff;
 }
+.edit-inner-div > .half:first-child{
+    animation: slideRight 1s ease forwards;
+}
+.edit-inner-div > .half:nth-child(2){
+    animation: slideLeft 1s ease forwards;
+}
+form>h3{
+    animation: slideDown 1s ease forwards;
+}
+@keyframes slideLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes slideRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 @keyframes slideTop {
     0% {
         opacity: 0;
-        transform: translateY(100px);
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
     }
 
     100% {

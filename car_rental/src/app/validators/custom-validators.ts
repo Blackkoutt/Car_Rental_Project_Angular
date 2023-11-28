@@ -16,7 +16,7 @@ export function IsAlphanumericValue(): ValidatorFn {
   return (control: AbstractControl) => {
     const value: string = control.value;
 
-    const alphanumericRegEx:RegExp = /^[a-zA-Z0-9]+$/;
+    const alphanumericRegEx:RegExp = /^[a-zA-Z0-9\s]+$/;
 
     const hasOnlyAlphanumeric:boolean = alphanumericRegEx.test(value);
 
