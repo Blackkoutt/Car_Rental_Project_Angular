@@ -48,7 +48,7 @@
             <button class="modify_button" appChangeEditButton [carInput]="car" (outputCarEvent)="editCar($event)">Modyfikuj</button>
             <!--<a [routerLink]="['/modify',car.Id]" ><button (click)="editCar(car)">Modyfikuj</button></a>-->
             <a href="#"><button class="details_button">Szczegóły/Wynajem</button></a>
-            <button (click)="DeleteCar(car)" class="delete_button">Usuń</button>
+            <button (click)="ShowDialog(car)" class="delete_button">Usuń</button>
           </td>     
         </tr>
         <tr *ngIf="carToEdit===car">
@@ -60,5 +60,14 @@
 
       </tbody>
     </table>
+    <dialog #deleteDialog class="delete_dialog">
+      <form method="dialog">
+          <div>
+              <p></p>
+              <input class="delete_button_dialog" type="submit" value="Usuń">
+              <input class="cancel_button_dialog" type="reset" value="Anuluj">
+          </div>
+      </form>
+  </dialog>
   </div>
   <!--<app-edit-car [car]="carToEdit" (carUpdated)="updateCarsList($event)"></app-edit-car>-->

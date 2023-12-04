@@ -1,19 +1,8 @@
 {
   "vehicle": [
     {
-      "id": "1",
-      "manufacturer": "Audi",
-      "model": "S5",
-      "date_of_manufacture": "01.01.2010",
-      "available_count": 78,
-      "rental_cost": 100,
-      "seats_count": "5",
-      "gearbox": true,
-      "type": "Sedan"
-    },
-    {
       "id": "2",
-      "manufacturer": "BMW",
+      "manufacturer": "BMW1",
       "model": "Series 3",
       "date_of_manufacture": "01.01.2010",
       "available_count": 78,
@@ -112,11 +101,11 @@
     },
     {
       "id": 11,
-      "manufacturer": "BMff",
+      "manufacturer": "BMW1",
       "model": "AAA",
-      "date_of_manufacture": "01.11.2023",
-      "available_count": 5,
-      "rental_cost": 5,
+      "date_of_manufacture": "29.11.2023",
+      "available_count": 24,
+      "rental_cost": 54,
       "seats_count": 5,
       "gearbox": true,
       "type": "Sedan"

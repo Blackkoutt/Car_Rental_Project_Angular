@@ -6,4 +6,5 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  isAdd:boolean = true;
 }

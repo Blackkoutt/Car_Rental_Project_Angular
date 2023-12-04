@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { CarData } from 'src/app/models/car-data';
 import { CarService } from 'src/app/services/car.service';
@@ -9,6 +9,7 @@ import { CarService } from 'src/app/services/car.service';
   styleUrls: ['./show-list.component.css']
 })
 export class ShowListComponent {
+  @ViewChild('deleteDialog') deleteDialog!: ElementRef<HTMLDialogElement>;
   title = 'car_rental';
   searchValue:string='';
   searchCriteria:string='manufacturer';
@@ -66,6 +67,20 @@ export class ShowListComponent {
         this.searchValue='';
       }
     })
+  }
+  ShowDialog(car:CarData){
+    const dialog = this.deleteDialog.nativeElement;
+    const info = dialog.querySelector('p');
+    if (info) {
+      info.textContent = `Czy napewno chcesz usunąć ${car.Manufacturer} ${car.Model}?`;
+    }
+    dialog.showModal();
+    dialog.onreset=()=>{
+      dialog.close();
+    }
+    dialog.onsubmit=()=>{
+      this.DeleteCar(car);
+    }
   }
   DeleteCar(car:CarData){
     console.log("tu");
