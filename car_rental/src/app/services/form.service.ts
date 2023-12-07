@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as CustomValidators from 'src/app/validators/custom-validators';
+import { CarData } from '../models/car-data';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,32 @@ export class FormService {
 
   constructor() { }
 
+  setValuesIntoForm(formModel:FormGroup,car?:CarData,):void{
+    formModel.setValue(
+      {
+        manufacturer: car?.Manufacturer,
+        model: car?.Model,
+        date_of_manufacture: this.parseDate(car?.DateOfManufacture),
+        available_count: car?.AvailableCount,
+        rental_cost: car?.RentalCost,
+        seats_count: car?.SeatsCount,
+        gearbox: car?.GearBox ? "Automatyczna": "Manualna",
+        type: car?.Type
+      }
+    )
+  }
+  parseDate(dateString?: string): string {
+    const parts:string[]|undefined = dateString?.split('.');
+    if(parts===undefined){
+      return new Date().toISOString().split('T')[0];
+    }
+    // w JS miesiace liczone od 0 do 11
+    return new Date(+parts[2], +parts[1] -1, +parts[0] + 1).toISOString().split('T')[0];
+  }
+
   createForm():FormGroup{
-    return  new FormGroup({
+    //return  
+    return new FormGroup({
       manufacturer: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
@@ -48,6 +73,7 @@ export class FormService {
         Validators.max(7),
       ]),
     })
+    //return formModel;
   }
   convertDateToDefaultFormat(date:string):string{
     const parts:string[] = date.split('-');

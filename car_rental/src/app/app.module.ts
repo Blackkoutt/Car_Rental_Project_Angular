@@ -16,7 +16,7 @@ import { AddCarComponent } from './components/add-car/add-car.component';
 const routes: Routes =
 [
   {path:'', component: ShowListComponent},
-  {path:'add/:is_add', component: EditCarComponent} 
+  {path:'add', component: AddCarComponent} 
   // tutaj jeszcze not found component
 ]
 

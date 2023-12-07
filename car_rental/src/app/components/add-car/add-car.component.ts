@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CarData } from 'src/app/models/car-data';
 import { CarService } from 'src/app/services/car.service';
 import { FormService } from 'src/app/services/form.service';
@@ -11,34 +12,25 @@ import { FormService } from 'src/app/services/form.service';
 })
 export class AddCarComponent {
   formModel:FormGroup;
+  showErrors:boolean=false;
 
-  constructor(private carService:CarService, private formService:FormService){
+  constructor(private carService:CarService, private formService:FormService, private router:Router){
     this.formModel = formService.createForm();
   }
 
   get controls(){
     return this.formModel.controls;
   }
+  showPotentialErrors(){
+    this.showErrors=true;
+  }
 
   addCar(){
     const formValues = this.formModel.value;
-    let newId:number=1;
-    const getNextIdPromise = new Promise<number>((resolve, reject) => {
-      this.carService.getNextId().subscribe({
-        next: (nextValue) => {
-          newId = nextValue;
-          resolve(newId);
-        },
-        error: (error) => {
-          reject(error);
-        },
-      });
-    });
-    
-    getNextIdPromise.then((resolvedId) => {
-      //console.log('Nowe ID:', resolvedId);
+
+    this.carService.getNextId().subscribe((value) => {
       const car:CarData = new CarData(
-        newId,
+        value,
         formValues.manufacturer,
         formValues.model,
         this.formService.convertDateToDefaultFormat(formValues.date_of_manufacture),
@@ -48,12 +40,10 @@ export class AddCarComponent {
         this.formService.mapGearbox(formValues.gearbox),
         formValues.type
       )
-        console.log(car);
       this.carService.createCar(car).subscribe((add_car: CarData) => {
-          console.log(add_car);
-        //this.carUpdated.emit(car_update); // Zamień car_update na [car_update]
-      });   
+        console.log("Dodany samochód: ",add_car);
+      });
+      this.router.navigate(['']);
     });
-    
   }
 }

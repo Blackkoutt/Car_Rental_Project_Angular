@@ -1,8 +1,7 @@
 
-<div class="edit-outer-div" *ngIf="car||isAdd"> 
-    <form [formGroup]="formModel" (ngSubmit)="(formModel.valid && updateCar(car))||(formModel.valid && addCar())">
-        <h3 *ngIf="!isAdd">Edycja samochodu:</h3>
-        <h3 *ngIf="isAdd">Dodanie samochodu:</h3>
+<div class="edit-outer-div" *ngIf="car"> 
+    <form [formGroup]="formModel" (ngSubmit)="formModel.valid && updateCar(car)">
+        <h3>Edycja samochodu:</h3>
         <div class="edit-inner-div">
             <div class="half"> 
                 <div class="form_input">
@@ -44,7 +43,6 @@
                 </div>      
             </div>
         </div>
-        <div *ngIf="(isAdd&&showErrors)||!isAdd">
             <div class="text-danger"> 
                 <p *ngIf="controls['manufacturer'].errors?.['required']">Nazwa producenta jest wymagana!</p>
                 <p *ngIf="controls['manufacturer'].errors?.['maxlength']">Nazwa producenta może mieć co najwyżej 50 znaków.</p>
@@ -81,9 +79,8 @@
                 <p *ngIf="controls['type'].hasError('startsWithUppercase')">Typ samochodu musi zaczynać się od wielkiej litery.</p>
                 <p *ngIf="controls['type'].hasError('validType')">Wypożyczalnia nie oferuje samochodów o podanym typie.</p>
             </div>
-        </div>
         <div>
-            <input (click)="showPotentialErrors()" type="submit" value="Zatwierdź">
+            <input type="submit" value="Zatwierdź">
         </div>
     </form>
 </div>

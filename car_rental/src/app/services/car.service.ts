@@ -17,12 +17,16 @@ export class CarService {
     return this.http.get<CarData[]>(`${environment.apiUrl}/${this.url}`);
   }
   public getNextId(): Observable<number> {
-    return this.getCars().pipe(
+    let id = this.getCars().pipe(
       map(cars => {
         const lastCar:CarData = cars[cars.length - 1];
-        return lastCar ? +lastCar["id"] + 1 : 1;
+        let car = lastCar ? +lastCar["id"] + 1 : 1;
+        console.log("car",car);
+        return car;
       })
     );
+    console.log("id", id);
+    return id;
   }
   public getOneCar(id:number):Observable<CarData>{
     return this.http.get<CarData>(`${environment.apiUrl}/${this.url}/${id}`);

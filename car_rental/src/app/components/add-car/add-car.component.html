@@ -1,6 +1,7 @@
+
 <div class="edit-outer-div"> 
-    <form [formGroup]="formModel" (ngSubmit)="formModel.valid && addCar()">
-        <h3>Edycja samochodu:</h3>
+    <form [formGroup]="formModel" (ngSubmit)="formModel.valid&&addCar()">
+        <h3>Dodanie samochodu</h3>
         <div class="edit-inner-div">
             <div class="half"> 
                 <div class="form_input">
@@ -42,44 +43,46 @@
                 </div>      
             </div>
         </div>
-        <div class="text-danger"> 
-            <p *ngIf="controls['manufacturer'].errors?.['required']">Nazwa producenta jest wymagana!</p>
-            <p *ngIf="controls['manufacturer'].errors?.['maxlength']">Nazwa producenta może mieć co najwyżej 50 znaków.</p>
-            <p *ngIf="controls['manufacturer'].errors?.['minlength']">Nazwa producenta musi mieć conajmniej 3 znaki.</p>
-            <p *ngIf="controls['manufacturer'].hasError('startsWithUppercase')">Nazwa producenta musi zaczynać się od wielkiej litery.</p>
-            <p *ngIf="controls['manufacturer'].hasError('hasOnlyAlphanumeric')">Nazwa producenta może składać się tylko z znaków i cyfr.</p>
+        <div *ngIf="(showErrors)">
+            <div class="text-danger"> 
+                <p *ngIf="controls['manufacturer'].errors?.['required']">Nazwa producenta jest wymagana!</p>
+                <p *ngIf="controls['manufacturer'].errors?.['maxlength']">Nazwa producenta może mieć co najwyżej 50 znaków.</p>
+                <p *ngIf="controls['manufacturer'].errors?.['minlength']">Nazwa producenta musi mieć conajmniej 3 znaki.</p>
+                <p *ngIf="controls['manufacturer'].hasError('startsWithUppercase')">Nazwa producenta musi zaczynać się od wielkiej litery.</p>
+                <p *ngIf="controls['manufacturer'].hasError('hasOnlyAlphanumeric')">Nazwa producenta może składać się tylko z znaków i cyfr.</p>
+            </div>
+            <div class="text-danger"> 
+                <p *ngIf="controls['model'].errors?.['required']">Nazwa modelu jest wymagana!</p>
+                <p *ngIf="controls['model'].errors?.['maxlength']">Nazwa modelu może mieć co najwyżej 50 znaków.</p>
+                <p *ngIf="controls['model'].hasError('hasOnlyAlphanumeric')">Nazwa modelu może składać się tylko z znaków i cyfr.</p>
+            </div>
+            <div class="text-danger"> 
+                <p *ngIf="controls['date_of_manufacture'].errors?.['required']">Data produkcji jest wymagana!</p>
+                <p *ngIf="controls['date_of_manufacture'].hasError('validDate')">Data nie może być wcześniejsza niż 01.01.2010 ani późniejsza niż obecna data.</p>
+            </div>
+            <div class="text-danger"> 
+                <p *ngIf="controls['available_count'].errors?.['required']">Liczba dostępnych samochodów jest wymagana!</p>
+                <p *ngIf="controls['available_count'].errors?.['min']">Liczba dostępnych samochodów nie może być mniejsza od 0!</p>
+            </div>
+            <div class="text-danger"> 
+                <p *ngIf="controls['rental_cost'].errors?.['required']">Koszt wynajęcia samochodu jest wymagany!</p>
+                <p *ngIf="controls['rental_cost'].errors?.['min']">Koszt wynajęcia samochodu nie może być mniejszy od 0!</p>
+                <p *ngIf="controls['rental_cost'].errors?.['max']">Koszt wynajęcia samochodu nie może być większy niż 2000!</p>
+            </div>
+            <div class="text-danger"> 
+                <p *ngIf="controls['seats_count'].errors?.['required']">Liczba miejsc samochodu jest wymagana!</p>
+                <p *ngIf="controls['seats_count'].errors?.['min']">Liczba miejsc nie może być mniejsza niż 2!</p>
+                <p *ngIf="controls['seats_count'].errors?.['max']">Liczba miejsc nie może być większa niż 7!</p>
+                <p *ngIf="controls['seats_count'].hasError('CorrectSeatsCount')">Podany typ samochodu nie może zawierać {{this.formModel.value.seats_count}} miejsc!</p>
+            </div>
+            <div class="text-danger"> 
+                <p *ngIf="controls['type'].errors?.['required']">Typ samochodu jest wymagany!</p>
+                <p *ngIf="controls['type'].hasError('startsWithUppercase')">Typ samochodu musi zaczynać się od wielkiej litery.</p>
+                <p *ngIf="controls['type'].hasError('validType')">Wypożyczalnia nie oferuje samochodów o podanym typie.</p>
+            </div>
         </div>
-        <div class="text-danger"> 
-            <p *ngIf="controls['model'].errors?.['required']">Nazwa modelu jest wymagana!</p>
-            <p *ngIf="controls['model'].errors?.['maxlength']">Nazwa modelu może mieć co najwyżej 50 znaków.</p>
-            <p *ngIf="controls['model'].hasError('hasOnlyAlphanumeric')">Nazwa modelu może składać się tylko z znaków i cyfr.</p>
-        </div>
-        <div class="text-danger"> 
-            <p *ngIf="controls['date_of_manufacture'].errors?.['required']">Data produkcji jest wymagana!</p>
-            <p *ngIf="controls['date_of_manufacture'].hasError('validDate')">Data nie może być wcześniejsza niż 01.01.2010 ani późniejsza niż obecna data.</p>
-        </div>
-        <div class="text-danger"> 
-            <p *ngIf="controls['available_count'].errors?.['required']">Liczba dostępnych samochodów jest wymagana!</p>
-            <p *ngIf="controls['available_count'].errors?.['min']">Liczba dostępnych samochodów nie może być mniejsza od 0!</p>
-        </div>
-        <div class="text-danger"> 
-            <p *ngIf="controls['rental_cost'].errors?.['required']">Koszt wynajęcia samochodu jest wymagany!</p>
-            <p *ngIf="controls['rental_cost'].errors?.['min']">Koszt wynajęcia samochodu nie może być mniejszy od 0!</p>
-            <p *ngIf="controls['rental_cost'].errors?.['max']">Koszt wynajęcia samochodu nie może być większy niż 2000!</p>
-        </div>
-        <div class="text-danger"> 
-            <p *ngIf="controls['seats_count'].errors?.['required']">Liczba miejsc samochodu jest wymagana!</p>
-            <p *ngIf="controls['seats_count'].errors?.['min']">Liczba miejsc nie może być mniejsza niż 2!</p>
-            <p *ngIf="controls['seats_count'].errors?.['max']">Liczba miejsc nie może być większa niż 7!</p>
-            <p *ngIf="controls['seats_count'].hasError('CorrectSeatsCount')">Podany typ samochodu nie może zawierać {{this.formModel.value.seats_count}} miejsc!</p>
-        </div>
-        <div class="text-danger"> 
-            <p *ngIf="controls['type'].errors?.['required']">Typ samochodu jest wymagany!</p>
-            <p *ngIf="controls['type'].hasError('startsWithUppercase')">Typ samochodu musi zaczynać się od wielkiej litery.</p>
-            <p *ngIf="controls['type'].hasError('validType')">Wypożyczalnia nie oferuje samochodów o podanym typie.</p>
-        </div> 
         <div>
-            <input type="submit" value="Zatwierdź">
+            <input (click)="showPotentialErrors()" type="submit" value="Zatwierdź">
         </div>
     </form>
 </div>
