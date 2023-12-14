@@ -41,13 +41,13 @@
           <td>{{car.AvailableCount}}</td>
           <td>{{car.RentalCost| currency:'zł':'symbol':'1.2-2'}}</td>
           <td>{{car.SeatsCount}}</td>
-          <td>{{ car.GearBox ? 'Automatyczna' : 'Manualna' }}</td>
+          <td>{{car.GearBox ? 'Automatyczna' : 'Manualna' }}</td>
           <td>{{car.Type}}</td>
           <td class="action_buttons">
             <!-- <button appChangeEditButton [carInput]="car" (outputCarEvent)="fun($event)" (click)="editCar(car)">Modyfikuj</button> -->
             <button class="modify_button" appChangeEditButton [carInput]="car" (outputCarEvent)="editCar($event)">Modyfikuj</button>
             <!--<a [routerLink]="['/modify',car.Id]" ><button (click)="editCar(car)">Modyfikuj</button></a>-->
-            <a href="#"><button class="details_button">Szczegóły/Wynajem</button></a>
+            <a [routerLink]="['/details', car.Id]"><button class="details_button">Szczegóły/Wynajem</button></a>
             <button (click)="ShowDialog(car)" class="delete_button">Usuń</button>
           </td>     
         </tr>

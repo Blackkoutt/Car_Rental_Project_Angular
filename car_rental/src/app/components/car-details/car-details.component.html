@@ -1,0 +1,11 @@
+<div *ngIf="car">
+    <div>ID: {{car.Id}}</div>
+    <div>Producent: {{car.Manufacturer}}</div>
+    <div>Model: {{car.Model}}</div>
+    <div>Data produkcji: {{car.DateOfManufacture}}</div>
+    <div>Ilość: {{car.AvailableCount}}</div>
+    <div>Cena wynajmu: {{car.RentalCost| currency:'zł':'symbol':'1.2-2'}}</div>
+    <div>Liczba miejsc: {{car.SeatsCount}}</div>
+    <div>Skrzynia biegów: {{car.GearBox ? 'Automatyczna': 'Manualna'}}</div>
+    <div>Typ: {{car.Type}}</div>
+</div>

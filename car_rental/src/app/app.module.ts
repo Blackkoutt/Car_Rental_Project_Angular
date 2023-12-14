@@ -12,11 +12,13 @@ import { SearchCarPipe } from './pipes/search-car.pipe';
 import { ChangeEditButtonDirective } from './directives/change-edit-button.directive';
 import { ScrollToDirective } from './directives/scroll-to.directive';
 import { AddCarComponent } from './components/add-car/add-car.component';
+import { CarDetailsComponent } from './components/car-details/car-details.component';
 
 const routes: Routes =
 [
   {path:'', component: ShowListComponent},
-  {path:'add', component: AddCarComponent} 
+  {path:'add', component: AddCarComponent},
+  {path:'details/:id', component: CarDetailsComponent}
   // tutaj jeszcze not found component
 ]
 
@@ -28,7 +30,8 @@ const routes: Routes =
     SearchCarPipe,
     ChangeEditButtonDirective,
     ScrollToDirective,
-    AddCarComponent
+    AddCarComponent,
+    CarDetailsComponent
   ],
   imports: [
     BrowserModule,
