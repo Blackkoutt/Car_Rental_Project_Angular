@@ -1,11 +1,43 @@
-<div *ngIf="car">
-    <div>ID: {{car.Id}}</div>
-    <div>Producent: {{car.Manufacturer}}</div>
-    <div>Model: {{car.Model}}</div>
-    <div>Data produkcji: {{car.DateOfManufacture}}</div>
-    <div>Ilość: {{car.AvailableCount}}</div>
-    <div>Cena wynajmu: {{car.RentalCost| currency:'zł':'symbol':'1.2-2'}}</div>
-    <div>Liczba miejsc: {{car.SeatsCount}}</div>
-    <div>Skrzynia biegów: {{car.GearBox ? 'Automatyczna': 'Manualna'}}</div>
-    <div>Typ: {{car.Type}}</div>
+<div *ngIf="car" class="car-details-container">
+    <div class ="car-details-box">
+    <div class="car-detail-item">
+      <span class="detail-label">ID: </span>
+      <span class="detail-value">{{ car.Id }}</span>
+    </div>
+    <div class="car-detail-item">
+      <span class="detail-label">Producent: </span>
+      <span class="detail-value">{{ car.Manufacturer }}</span>
+    </div>
+    <div class="car-detail-item">
+      <span class="detail-label">Model: </span>
+      <span class="detail-value">{{ car.Model }}</span>
+    </div>
+    <div class="car-detail-item">
+      <span class="detail-label">Data produkcji: </span>
+      <span class="detail-value">{{ car.DateOfManufacture }}</span>
+    </div>
+    <div class="car-detail-item">
+      <span class="detail-label">Ilość: </span>
+      <span class="detail-value">{{ car.AvailableCount }}</span>
+    </div>
+    <div class="car-detail-item">
+      <span class="detail-label">Cena wynajmu: </span>
+      <span class="detail-value">{{ car.RentalCost | currency:'zł':'symbol':'1.2-2' }}</span>
+    </div>
+    <div class="car-detail-item">
+      <span class="detail-label">Liczba miejsc: </span>
+      <span class="detail-value">{{ car.SeatsCount }}</span>
+    </div>
+    <div class="car-detail-item">
+      <span class="detail-label">Skrzynia biegów: </span>
+      <span class="detail-value">{{ car.GearBox ? 'Automatyczna' : 'Manualna' }}</span>
+    </div>
+    <div class="car-detail-item">
+      <span class="detail-label">Typ: </span>
+      <span class="detail-value">{{ car.Type }}</span>
+    </div>
+    <div class="action-buttons">
+      <a [routerLink]="['/reserve', car.Id]"><button class="reserve-button">Wynajmij</button></a>
+    </div>
+  </div>
 </div>

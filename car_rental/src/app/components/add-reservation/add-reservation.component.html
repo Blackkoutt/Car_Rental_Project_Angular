@@ -1,0 +1,77 @@
+<div class="edit-outer-div"> 
+    <form [formGroup]="formModel" (ngSubmit)="formModel.valid && addReservation()">
+        <h3>Dodanie rezerwacji</h3>
+        <div class="edit-inner-div">
+            <div class="half"> 
+            <div class="form_input">
+                <label for="car_id">Samochod:</label>
+                <input id="car_id" formControlName="car_id" type="number">
+            </div>
+                <div class="form_input">
+                    <label for="name">Imię:</label>
+                    <input id="name" formControlName="name" type="text">
+                </div>                 
+                <div class="form_input">
+                    <label for="surname">Nazwisko:</label>
+                    <input id="surname" formControlName="surname" type="text">
+                </div>
+                <div class="form_input">
+                    <label for="email">Email:</label>
+                    <input id="email" formControlName="email" type="email">
+                </div> 
+            </div>  
+            <div class="half">        
+                <div class="form_input">
+                    <label for="phoneNumber">Numer telefonu:</label>
+                    <input id="phoneNumber" formControlName="phoneNumber" type="tel">
+                </div>
+                <div class="form_input">
+                    <label for="start_of_reservation">Początek rezerwacji:</label>
+                    <input id="start_of_reservation" formControlName="start_of_reservation" type="date">
+                </div>
+                <div class="form_input">
+                    <label for="end_of_reservation">Koniec rezerwacji:</label>
+                    <input id="end_of_reservation" formControlName="end_of_reservation" type="date">
+                </div>
+                <div class="form_input">
+                    <label for="total_cost">Koszt:</label>
+                    <input id="total_cost" formControlName="total_cost" type="number">
+                </div>
+            </div>
+
+        </div>
+        <div *ngIf="showErrors">
+            <div class="text-danger"> 
+                <p *ngIf="controls['name'].errors?.['required']">Imie jest wymagane!</p>
+                <p *ngIf="controls['name'].errors?.['maxlength']">Imie może mieć co najwyżej 50 znaków.</p>
+                <p *ngIf="controls['name'].hasError('startsWithUppercase')">Imie musi zaczynać się od wielkiej litery.</p>
+            </div>
+            <div class="text-danger"> 
+                <p *ngIf="controls['surname'].errors?.['required']">Nazwisko jest wymagane!</p>
+                <p *ngIf="controls['surname'].errors?.['maxlength']">Nazwisko może mieć co najwyżej 50 znaków.</p>
+                <p *ngIf="controls['surname'].hasError('startsWithUppercase')">Nazwisko musi zaczynać się od wielkiej litery.</p>
+            </div>
+            <div class="text-danger"> 
+                <p *ngIf="controls['email'].errors?.['required']">Email jest wymagany!</p>
+                <p *ngIf="controls['email'].errors?.['maxlength']">Email może mieć co najwyżej 50 znaków.</p>
+                <p *ngIf="controls['email'].errors?.['email']">Email jest niepoprawny.</p>
+            </div>
+            <div class="text-danger"> 
+                <p *ngIf="controls['phoneNumber'].errors?.['required']">Numer telefonu jest wymagany!</p>
+                <p *ngIf="controls['phoneNumber'].hasError('nineDigit')">Numer telefonu musi sie składać z 9 cyfr.</p>
+            </div>
+            <div class="text-danger"> 
+                <p *ngIf="controls['start_of_reservation'].errors?.['required']">Data startu jest wymagana!</p>
+                <p *ngIf="controls['start_of_reservation'].hasError('validStartDate')">Data nie moze być wcześniejsza niż obecna data</p>
+            </div>
+            <div class="text-danger"> 
+                <p *ngIf="controls['end_of_reservation'].errors?.['required']">Data końcowa jest wymagana!</p>
+                <p *ngIf="controls['end_of_reservation'].hasError('invalidEndDate')">Data końcowa nie moze być wcześcniej niż data początkowa!</p>
+            </div>
+            
+        </div>
+        <div>
+            <input (click)="showPotentialErrors()" type="submit" value="Zatwierdź">
+        </div>
+    </form>
+</div>

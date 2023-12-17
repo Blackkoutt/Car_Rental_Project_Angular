@@ -131,6 +131,31 @@
       "seats_count": 5,
       "gearbox": true,
       "type": "Sedan"
+    },
+    {
+      "id": 17,
+      "manufacturer": "Audi",
+      "model": "A5",
+      "date_of_manufacture": "17.06.2020",
+      "available_count": 3,
+      "rental_cost": 150,
+      "seats_count": 5,
+      "gearbox": false,
+      "type": "Sedan"
+    },
+    {
+      "id": 18,
+      "manufacturer": "BMW",
+      "model": "E34",
+      "date_of_manufacture": "02.01.2018",
+      "available_count": 3,
+      "rental_cost": 200,
+      "seats_count": 5,
+      "gearbox": false,
+      "type": "Kombi"
     }
+  ],
+  "reservation": [
+
   ]
 }

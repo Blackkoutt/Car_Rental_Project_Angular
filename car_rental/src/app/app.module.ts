@@ -13,12 +13,13 @@ import { ChangeEditButtonDirective } from './directives/change-edit-button.direc
 import { ScrollToDirective } from './directives/scroll-to.directive';
 import { AddCarComponent } from './components/add-car/add-car.component';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
-
+import { AddReservationComponent } from './components/add-reservation/add-reservation.component';
 const routes: Routes =
 [
   {path:'', component: ShowListComponent},
   {path:'add', component: AddCarComponent},
-  {path:'details/:id', component: CarDetailsComponent}
+  {path:'details/:id', component: CarDetailsComponent},
+  {path:'reserve/:id', component: AddReservationComponent}
   // tutaj jeszcze not found component
 ]
 
@@ -31,6 +32,7 @@ const routes: Routes =
     ChangeEditButtonDirective,
     ScrollToDirective,
     AddCarComponent,
+    AddReservationComponent,
     CarDetailsComponent
   ],
   imports: [

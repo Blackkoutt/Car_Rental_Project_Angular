@@ -1,4 +1,4 @@
-import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 
 export function IsValueStartsWithUppercase(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
@@ -82,3 +82,41 @@ export function DateValidator(): ValidatorFn {
     return (inputDate >= minDate && inputDate <= maxDate) ? null : { validDate: true }
   }
 }
+export function StartDateValidator(): ValidatorFn {
+  return (control: AbstractControl) => {
+    const value: string = control.value;
+
+    const inputDate = new Date(value);
+
+    const currentDate = new Date();
+
+    const isValid = inputDate < currentDate;
+
+    console.log('Validation Result:', isValid);
+
+    return isValid ? null : { validStartDate: true };
+  }
+}
+export function NineDigitValidator(): ValidatorFn {
+  return (control: AbstractControl)=> {
+   
+    const value: number = control.value;
+
+    // Sprawdź, czy wartość ma dokładnie 9 cyfr
+    const isValid = /^\d{9}$/.test(String(value));
+
+    return isValid ? null : { nineDigit: true};
+  };
+}
+export function endOfReservationValidator(control: AbstractControl): ValidationErrors | null {
+  const startOfReservation = control.root?.get('start_of_reservation')?.value;
+  const endOfReservation = control.value;
+
+  if (startOfReservation && endOfReservation && endOfReservation < startOfReservation) {
+      return { invalidEndDate: true };
+  }
+
+  return null;
+}
+
+

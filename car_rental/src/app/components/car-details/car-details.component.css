@@ -1,0 +1,36 @@
+.car-details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Dostosuj wysokość, aby dopasować do ekranu */
+  }
+  
+  .car-details-box {
+    background-color: #494646; /* Szary kolor tła */
+    padding: 20px;
+    border-radius: 10px; /* Zaokrąglony narożnik */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Cień */
+  }
+  
+  .car-detail-item {
+    margin-bottom: 10px;
+  }
+  
+  .detail-label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .action-buttons {
+    margin-top: 20px;
+  }
+  
+  .reserve-button {
+    padding: 10px;
+    background-color: #007bff; /* Kolor przycisku */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
