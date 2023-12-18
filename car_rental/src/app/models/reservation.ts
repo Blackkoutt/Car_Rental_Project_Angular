@@ -1,6 +1,6 @@
 export class Reservation{
     constructor(
-                private reservation_id:number,
+                private id:number,
                 private car_id:number,
                 private name:string,
                 private surname:string,
@@ -10,7 +10,7 @@ export class Reservation{
                 private end_of_reservation:string,
                 private total_cost:number,){}
     get ReservationId():number{
-        return this.reservation_id;
+        return this.id;
     }
     get CarId():number{
         return this.car_id;

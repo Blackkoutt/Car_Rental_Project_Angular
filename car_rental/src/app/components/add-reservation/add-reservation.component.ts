@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy,Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy,Component, OnInit,ChangeDetectorRef } from '@angular/core';
+import { FormGroup, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CarData } from 'src/app/models/car-data';
@@ -8,12 +8,16 @@ import { CarService } from 'src/app/services/car.service';
 import { FormService } from 'src/app/services/form.service';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { ActivatedRoute } from '@angular/router';
+import { combineLatest } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
+
+
 
 @Component({
   selector: 'app-add-reservation',
   templateUrl: './add-reservation.component.html',
   styleUrls: ['./add-reservation.component.css'], 
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddReservationComponent implements OnInit {
   car: CarData | undefined;
@@ -23,6 +27,7 @@ export class AddReservationComponent implements OnInit {
   private dateSubscription: Subscription | undefined;
 
   constructor(
+    private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
     private carService: CarService,
     private formService: FormService,
@@ -52,28 +57,22 @@ export class AddReservationComponent implements OnInit {
       });
     });
 
-    // Subskrybuj zmiany daty początkowej i końcowej
+    
     this.dateSubscription = this.formModel
-      .get('start_of_reservation')
-      ?.valueChanges.subscribe(() => {
-        this.calculateTotalCost();
-      });
-
-    this.dateSubscription = this.formModel
-      .get('end_of_reservation')
-      ?.valueChanges.subscribe(() => {
-        this.calculateTotalCost();
-      });
+    .get('start_of_reservation')
+    ?.valueChanges.subscribe(() => {
+      this.calculateTotalCost();
+      this.cdr.detectChanges(); // Manually trigger change detection
+    });
+  
+  this.dateSubscription = this.formModel
+    .get('end_of_reservation')
+    ?.valueChanges.subscribe(() => {
+      this.calculateTotalCost();
+      this.cdr.detectChanges(); // Manually trigger change detection
+    });
+      
   }
-
-  get controls() {
-    return this.formModel.controls;
-  }
-
-  showPotentialErrors() {
-    this.showErrors = true;
-  }
-
   async calculateTotalCost() {
     const formValues = this.formModel.value;
     const startDate = new Date(formValues.start_of_reservation);
@@ -93,6 +92,15 @@ export class AddReservationComponent implements OnInit {
       }
     }
   }
+  get controls() {
+    return this.formModel.controls;
+  }
+
+  showPotentialErrors() {
+    this.showErrors = true;
+  }
+
+
 
   addReservation() {
     const formValues = this.formModel.value;
