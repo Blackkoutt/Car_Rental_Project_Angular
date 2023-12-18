@@ -19,7 +19,6 @@ const routes: Routes =
 [
   {path:'', component: ShowListComponent},
   {path:'add', component: AddCarComponent},
-  {path:'details/:id', component: CarDetailsComponent},
   {path:'reserve/:id', component: AddReservationComponent},
   {path:'reservations', component: ShowReservationsComponent}
   // tutaj jeszcze not found component

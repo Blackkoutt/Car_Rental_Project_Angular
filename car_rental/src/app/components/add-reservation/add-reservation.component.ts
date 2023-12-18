@@ -29,7 +29,7 @@ export class AddReservationComponent implements OnInit {
     private reservationService: ReservationService,
     private router: Router
   ) {
-    this.formModel = formService.createForm();
+    this.formModel = formService.createFormReservation();
   }
 
   ngOnInit() {

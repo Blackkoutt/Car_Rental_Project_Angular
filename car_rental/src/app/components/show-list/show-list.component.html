@@ -1,4 +1,7 @@
-<div class="table-div">
+<div *ngIf="isDetailsVisible">
+  <app-car-details [car]="carDetails"></app-car-details>
+</div>
+<div *ngIf="!isDetailsVisible" class="table-div">
   <div class="filter">
     <div class="search_div">
       <label for="select_criteria">Szukaj według</label>
@@ -47,7 +50,7 @@
             <!-- <button appChangeEditButton [carInput]="car" (outputCarEvent)="fun($event)" (click)="editCar(car)">Modyfikuj</button> -->
             <button class="modify_button" appChangeEditButton [carInput]="car" (outputCarEvent)="editCar($event)">Modyfikuj</button>
             <!--<a [routerLink]="['/modify',car.Id]" ><button (click)="editCar(car)">Modyfikuj</button></a>-->
-            <a [routerLink]="['/details', car.Id]"><button class="details_button">Szczegóły/Wynajem</button></a>
+            <a (click)="ChangeDetailsVisibility(car)"><button class="details_button">Szczegóły/Wynajem</button></a>
             <button (click)="ShowDialog(car)" class="delete_button">Usuń</button>
           </td>     
         </tr>
@@ -69,5 +72,5 @@
           </div>
       </form>
   </dialog>
-  </div>
+</div>
   <!--<app-edit-car [car]="carToEdit" (carUpdated)="updateCarsList($event)"></app-edit-car>-->

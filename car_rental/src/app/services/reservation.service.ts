@@ -19,7 +19,7 @@ export class ReservationService {
       setTimeout(() => {
         try {
           const timeDifference = endDate.getTime() - startDate.getTime();
-          const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+          const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24))+1;
           const totalCost = daysDifference * dailyCost;
 
           resolve(totalCost);

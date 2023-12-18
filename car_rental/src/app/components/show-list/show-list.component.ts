@@ -15,12 +15,18 @@ export class ShowListComponent {
   searchCriteria:string='manufacturer';
   cars: CarData[] = [];
   carToEdit?:CarData;
+  isDetailsVisible=false;
+  carDetails?:CarData;
 
   searchValueControl = new FormControl('',[Validators.minLength(3)]);
   searchCriteriaControl = new FormControl('manufacturer');
 
   constructor(private carService:CarService){
 
+  }
+  ChangeDetailsVisibility(car:CarData):void{
+    this.carDetails = car;
+    this.isDetailsVisible=true;
   }
   ngOnInit(): void {
     this.carService.getCars().subscribe((result: any[]) => {

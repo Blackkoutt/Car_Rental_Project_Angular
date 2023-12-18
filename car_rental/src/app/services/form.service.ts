@@ -11,7 +11,7 @@ export class FormService {
 
   constructor() { }
 
-  setValuesIntoForm(formModel:FormGroup,car?:CarData,reservation?:Reservation):void{
+  setValuesIntoForm(formModel:FormGroup,car?:CarData):void{
     formModel.setValue(
       {
         manufacturer: car?.Manufacturer,
@@ -22,17 +22,24 @@ export class FormService {
         seats_count: car?.SeatsCount,
         gearbox: car?.GearBox ? "Automatyczna": "Manualna",
         type: car?.Type,
-        car_id: reservation?.CarId,
-        name: reservation?.Name,
-        surname: reservation?.Surname,
-        email: reservation?.Email,
-        phoneNumber: reservation?.PhoneNumber,
-        start_of_reservation: this.parseDate(reservation?.Start_of_reservation),
-        end_of_reservation: this.parseDate(reservation?.End_of_reservation),
-        total_cost: reservation?.Total_Cost,
       }
     )
   }
+ /* setReservationValuesIntoForm(formModel:FormGroup,reservation?:Reservation):void{
+  formModel.setValue(
+  {
+    car_id: reservation?.CarId,
+    name: reservation?.Name,
+    surname: reservation?.Surname,
+    email: reservation?.Email,
+    phoneNumber: reservation?.PhoneNumber,
+    start_of_reservation: this.parseDate(reservation?.Start_of_reservation),
+    end_of_reservation: this.parseDate(reservation?.End_of_reservation),
+    total_cost: reservation?.Total_Cost,
+  }
+  )
+}*/
+  
   parseDate(dateString?: string): string {
     const parts:string[]|undefined = dateString?.split('.');
     if(parts===undefined){
@@ -41,17 +48,7 @@ export class FormService {
     // w JS miesiace liczone od 0 do 11
     return new Date(+parts[2], +parts[1] -1, +parts[0] + 1).toISOString().split('T')[0];
   }
-  endOfReservationValidator(control: AbstractControl): ValidationErrors | null {
-    const startOfReservation = control.root?.get('start_of_reservation')?.value;
-    const endOfReservation = control.value;
-
-    if (startOfReservation && endOfReservation && endOfReservation < startOfReservation) {
-        return { invalidEndDate: true };
-    }
-
-    return null;
-}
-
+ 
   createForm():FormGroup{
     //return  
     return new FormGroup({
@@ -90,45 +87,53 @@ export class FormService {
         Validators.required,
         Validators.min(2),
         Validators.max(7),
-      ]),
-      name: new FormControl('',[
-        Validators.required,
-        Validators.maxLength(50),
-        CustomValidators.IsValueStartsWithUppercase(),
-      ]),
-      surname: new FormControl('',[
-        Validators.required,
-        Validators.maxLength(50),
-        CustomValidators.IsValueStartsWithUppercase(),
-        CustomValidators.IsAlphanumericValue()
-      ]),
-      email: new FormControl('',[
-        Validators.required,
-        Validators.maxLength(50),
-        Validators.email
-      ]),
-      phoneNumber: new FormControl('',[
-        Validators.required,
-        CustomValidators.NineDigitValidator()
-      ]),
-      car_id: new FormControl('',[
-        Validators.required
-      ]),
-      start_of_reservation: new FormControl('',[
-        Validators.required,
-        CustomValidators.StartDateValidator()
-      ]),
-      end_of_reservation: new FormControl('',[
-        Validators.required, 
-        CustomValidators.endOfReservationValidator.bind(this)              
-      ]),
+      ]),   
       total_cost: new FormControl('',[
         Validators.required,
-        Validators.min(0),
-        Validators.max(2000)
-      ]),
-      
+      ])  
     },);
+  }
+    createFormReservation():FormGroup{
+      //return  
+      return new FormGroup({
+        name: new FormControl('',[
+          Validators.required,
+          Validators.maxLength(50),
+          CustomValidators.IsValueStartsWithUppercase(),
+        ]),
+        surname: new FormControl('',[
+          Validators.required,
+          Validators.maxLength(50),
+          CustomValidators.IsValueStartsWithUppercase(),
+          CustomValidators.IsAlphanumericValue()
+        ]),
+        email: new FormControl('',[
+          Validators.required,
+          Validators.maxLength(50),
+          Validators.email
+        ]),
+        phoneNumber: new FormControl('',[
+          Validators.required,
+          CustomValidators.NineDigitValidator()
+        ]),
+        car_id: new FormControl('',[
+          Validators.required
+        ]),
+        start_of_reservation: new FormControl('',[
+          Validators.required,
+          CustomValidators.StartDateValidator()
+        ]),
+        end_of_reservation: new FormControl('',[
+          Validators.required, 
+          CustomValidators.endOfReservationValidator.bind(this)              
+        ]),
+        total_cost: new FormControl('',[
+          Validators.required,
+          Validators.min(0),
+          Validators.max(2000)
+        ]),
+        
+      },);
     //return formModel;
   }
   convertDateToDefaultFormat(date:string):string{
@@ -143,5 +148,5 @@ export class FormService {
       return false;
     }
   }
-
 }
+
