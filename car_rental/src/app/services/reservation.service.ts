@@ -36,7 +36,7 @@ export class ReservationService {
     let id = this.getReservations().pipe(
       map(reservations => {
         const lastReservation:Reservation = reservations[reservations.length - 1];
-        let reservation = lastReservation? +lastReservation["reservation_id"] + 1 : 1;
+        let reservation = lastReservation? +lastReservation["id"] + 1 : 1;
         console.log("reservation",reservation);
         return reservation;
       })
@@ -53,6 +53,7 @@ export class ReservationService {
   }
   
   public createReservation(reservation: Reservation): Observable<Reservation> {
+    console.log("res from service: ", reservation);
     return this.http.post<Reservation>(`${environment.apiUrl}/${this.url}`, reservation);
   }
   

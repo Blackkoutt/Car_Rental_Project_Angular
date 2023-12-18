@@ -87,11 +87,8 @@ export class FormService {
         Validators.required,
         Validators.min(2),
         Validators.max(7),
-      ]),   
-      total_cost: new FormControl('',[
-        Validators.required,
-      ])  
-    },);
+      ])
+    });
   }
     createFormReservation():FormGroup{
       //return  
@@ -133,7 +130,7 @@ export class FormService {
           Validators.max(2000)
         ]),
         
-      },);
+      });
     //return formModel;
   }
   convertDateToDefaultFormat(date:string):string{

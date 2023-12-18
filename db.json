@@ -177,5 +177,17 @@
       "type": "Sedan"
     }
   ],
-  "reservation": []
+  "reserve": [
+    {
+      "id": 1,
+      "car_id": "2",
+      "name": "Jabłka",
+      "surname": "Strapczuk",
+      "email": "mateusz.strapczuk@gmail.com",
+      "phoneNumber": "789456123",
+      "start_of_reservation": "25.12.2023",
+      "end_of_reservation": "31.12.2023",
+      "total_cost": 20
+    }
+  ]
 }
