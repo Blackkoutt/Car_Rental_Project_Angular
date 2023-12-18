@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment'
+import {differenceInDays} from 'date-fns'
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class ReservationService {
       // Simulacja operacji asynchronicznej, na przykład zapytania HTTP
       setTimeout(() => {
         try {
-          const timeDifference = endDate.getTime() - startDate.getTime();
-          const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24))+1;
+          const daysDifference = differenceInDays(endDate, startDate);
+          console.log(daysDifference);
           const totalCost = daysDifference * dailyCost;
 
           resolve(totalCost);

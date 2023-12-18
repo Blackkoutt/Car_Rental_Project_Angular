@@ -21,6 +21,8 @@ export class AddReservationComponent implements OnInit {
   showErrors: boolean = false;
   totalCost: number | undefined;
   private dateSubscription: Subscription | undefined;
+  private startDate:Date|undefined;
+  private endDate:Date|undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -52,18 +54,22 @@ export class AddReservationComponent implements OnInit {
       });
     });
 
+    this.dateSubscription = this.formModel
+    .get('end_of_reservation')
+    ?.valueChanges.subscribe((value) => {
+      this.endDate=value;
+      this.calculateTotalCost(this.startDate, this.endDate);
+    });
+    this.dateSubscription = this.formModel
+    .get('start_of_reservation')
+    ?.valueChanges.subscribe((value) => {
+      this.startDate=value;
+      this.calculateTotalCost(this.startDate, this.endDate);
+    });
     // Subskrybuj zmiany daty początkowej i końcowej
-    this.dateSubscription = this.formModel
-      .get('start_of_reservation')
-      ?.valueChanges.subscribe(() => {
-        this.calculateTotalCost();
-      });
+    
 
-    this.dateSubscription = this.formModel
-      .get('end_of_reservation')
-      ?.valueChanges.subscribe(() => {
-        this.calculateTotalCost();
-      });
+
   }
 
   get controls() {
@@ -74,16 +80,20 @@ export class AddReservationComponent implements OnInit {
     this.showErrors = true;
   }
 
-  async calculateTotalCost() {
-    const formValues = this.formModel.value;
+  async calculateTotalCost(start:Date|undefined, end:Date|undefined) {
+    /*const formValues = this.formModel.value;
     const startDate = new Date(formValues.start_of_reservation);
+    console.log("Srart",formValues.start_of_reservation);
     const endDate = new Date(formValues.end_of_reservation);
+    console.log("End",formValues.end_of_reservation);*/
   
-    if (this.car?.RentalCost && startDate && endDate) {
+    if (this.car?.RentalCost && start && end) {
       try {
+        console.log("start", start);
+        console.log("end", end);
         const totalCost = await this.reservationService.calculateTotalCost(
-          startDate,
-          endDate,
+          start,
+          end,
           this.car.RentalCost
         );
   
