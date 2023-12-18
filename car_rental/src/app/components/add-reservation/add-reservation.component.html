@@ -35,8 +35,9 @@
                 </div>
                 <div class="form_input">
                     <label for="total_cost">Koszt:</label>
-                    <input id="total_cost" formControlName="total_cost" type="number">
+                    <input id="total_cost" formControlName="total_cost" type="Number">
                 </div>
+                <p>Koszt całkowity: {{ formModel.get('total_cost')?.value }}</p>
             </div>
 
         </div>

@@ -28,7 +28,8 @@ export class ShowReservationsComponent {
             reservation.total_cost,
 
           );
-        });
+        }
+        );
         console.log(this.reservations[0]);
       });
     }

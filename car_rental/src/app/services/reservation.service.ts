@@ -13,6 +13,22 @@ export class ReservationService {
   private url = "reserve";
   constructor(private http:HttpClient) { }
 
+  calculateTotalCost(startDate: Date, endDate: Date, dailyCost: number): Promise<number> {
+    return new Promise((resolve, reject) => {
+      // Simulacja operacji asynchronicznej, na przykład zapytania HTTP
+      setTimeout(() => {
+        try {
+          const timeDifference = endDate.getTime() - startDate.getTime();
+          const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+          const totalCost = daysDifference * dailyCost;
+
+          resolve(totalCost);
+        } catch (error) {
+          reject(error);
+        }
+      }, 0);
+    });
+  }
   public getReservations():Observable<Reservation[]>{
     return this.http.get<Reservation[]>(`${environment.apiUrl}/${this.url}`);
   }
