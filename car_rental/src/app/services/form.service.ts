@@ -25,7 +25,7 @@ export class FormService {
       }
     )
   }
- /* setReservationValuesIntoForm(formModel:FormGroup,reservation?:Reservation):void{
+  setReservationValuesIntoForm(formModel:FormGroup,reservation?:Reservation):void{
   formModel.setValue(
   {
     car_id: reservation?.CarId,
@@ -38,7 +38,7 @@ export class FormService {
     total_cost: reservation?.Total_Cost,
   }
   )
-}*/
+}
   
   parseDate(dateString?: string): string {
     const parts:string[]|undefined = dateString?.split('.');
@@ -46,7 +46,7 @@ export class FormService {
       return new Date().toISOString().split('T')[0];
     }
     // w JS miesiace liczone od 0 do 11
-    return new Date(+parts[2], +parts[1] -1, +parts[0] + 1).toISOString().split('T')[0];
+    return new Date(+parts[2], +parts[1] -1 , +parts[0] +1).toISOString().split('T')[0];
   }
  
   createForm():FormGroup{
@@ -87,8 +87,8 @@ export class FormService {
         Validators.required,
         Validators.min(2),
         Validators.max(7),
-      ])
-    });
+      ]),   
+    },);
   }
     createFormReservation():FormGroup{
       //return  
@@ -127,7 +127,7 @@ export class FormService {
         total_cost: new FormControl('',[
           Validators.required,
           Validators.min(0),
-          Validators.max(2000)
+          Validators.max(20000)
         ]),
         
       });
@@ -135,7 +135,7 @@ export class FormService {
   }
   convertDateToDefaultFormat(date:string):string{
     const parts:string[] = date.split('-');
-    return `${parts[2]}.${parts[1]}.${parts[0]}`
+    return `${parts[2]}-${parts[1]}-${parts[0]}`
   }
   mapGearbox(gearbox:string){
     if(gearbox === "Automatyczna"){

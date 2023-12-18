@@ -175,6 +175,17 @@
       "seats_count": 5,
       "gearbox": false,
       "type": "Sedan"
+    },
+    {
+      "id": 21,
+      "manufacturer": "Audi",
+      "model": "SIema",
+      "date_of_manufacture": "05.12.2023",
+      "available_count": 10,
+      "rental_cost": 200,
+      "seats_count": 5,
+      "gearbox": false,
+      "type": "Sedan"
     }
   ],
   "reserve": [
