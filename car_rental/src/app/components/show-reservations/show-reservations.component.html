@@ -1,0 +1,32 @@
+<div class="table-div">
+    <table class="table table-dark table-hovers table-responsive">
+        <thead>
+        <tr>
+            <th scope="col">Imie</th>
+            <th scope="col">Nazwisko</th>
+            <th scope="col">Email</th>
+            <th scope="col">Numer Telefonu</th>
+            <th scope="col">Id samochodu</th>
+            <th scope="col">Początek wypożyczenia</th>
+            <th scope="col">Koniec wypożyczenia</th>
+            <th scope="col">Koszt</th>
+        </tr>
+        </thead>
+        <tbody  class="table-group-divider">
+        <ng-container *ngFor="let reservation of reservations ">
+        <tr>
+            <td>{{reservation.Name}}</td>
+            <td>{{reservation.Surname}}</td>
+            <td>{{reservation.Email}}</td>
+            <td>{{reservation.PhoneNumber}}</td>
+            <td>{{reservation.CarId}}</td>
+            <td>{{reservation.Start_of_reservation}}</td>
+            <td>{{reservation.End_of_reservation}}</td>
+            <td>{{reservation.Total_Cost}}</td>
+            <td class="action_buttons">
+            </td>     
+        </tr>         
+        </ng-container>
+        </tbody>
+    </table>
+</div>

@@ -90,7 +90,7 @@ export function StartDateValidator(): ValidatorFn {
 
     const currentDate = new Date();
 
-    const isValid = inputDate < currentDate;
+    const isValid = inputDate > currentDate;
 
     console.log('Validation Result:', isValid);
 

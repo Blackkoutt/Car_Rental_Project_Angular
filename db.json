@@ -155,7 +155,18 @@
       "type": "Kombi"
     }
   ],
-  "reservation": [
+  "reserve": [
+    {
+      "reservation_id": 1,
+      "car_id": 6,
+      "name": "Mateusz",
+      "surname":"Sokolowski",
+      "email":"mateusz@gmail.com",
+      "phoneNumber": 666555444,
+      "start_of_reservation": "17.12.2023",
+      "end_of_reservation":"19.12.2023",
+      "total_cost": 300
+    }
 
   ]
 }

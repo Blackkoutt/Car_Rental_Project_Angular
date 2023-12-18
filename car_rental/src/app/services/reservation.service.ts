@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment'
 })
 export class ReservationService {
 
-  private url = "reservation";
+  private url = "reserve";
   constructor(private http:HttpClient) { }
 
   public getReservations():Observable<Reservation[]>{

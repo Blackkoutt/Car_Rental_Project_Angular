@@ -14,12 +14,14 @@ import { ScrollToDirective } from './directives/scroll-to.directive';
 import { AddCarComponent } from './components/add-car/add-car.component';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
 import { AddReservationComponent } from './components/add-reservation/add-reservation.component';
+import { ShowReservationsComponent } from './components/show-reservations/show-reservations.component';
 const routes: Routes =
 [
   {path:'', component: ShowListComponent},
   {path:'add', component: AddCarComponent},
   {path:'details/:id', component: CarDetailsComponent},
-  {path:'reserve/:id', component: AddReservationComponent}
+  {path:'reserve/:id', component: AddReservationComponent},
+  {path:'reservations', component: ShowReservationsComponent}
   // tutaj jeszcze not found component
 ]
 
@@ -33,7 +35,8 @@ const routes: Routes =
     ScrollToDirective,
     AddCarComponent,
     AddReservationComponent,
-    CarDetailsComponent
+    CarDetailsComponent,
+    ShowReservationsComponent
   ],
   imports: [
     BrowserModule,
