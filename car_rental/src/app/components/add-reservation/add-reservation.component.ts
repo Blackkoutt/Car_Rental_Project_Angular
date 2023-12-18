@@ -101,6 +101,7 @@ export class AddReservationComponent implements OnInit {
       new Date(formValues.end_of_reservation),
       this.car?.RentalCost || 0
     );*/
+    console.log("here");
     this.reservationService.getNextId().subscribe((value) => {
       const reservation: Reservation = new Reservation(
         value,
