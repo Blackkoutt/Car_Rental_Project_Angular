@@ -130,7 +130,7 @@ export class FormService {
           Validators.max(20000)
         ]),
         
-      },);
+      });
     //return formModel;
   }
   convertDateToDefaultFormat(date:string):string{

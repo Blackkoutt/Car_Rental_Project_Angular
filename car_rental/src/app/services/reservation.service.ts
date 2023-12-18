@@ -54,6 +54,7 @@ export class ReservationService {
   }
   */
   public createReservation(reservation: Reservation): Observable<Reservation> {
+    console.log("res from service: ", reservation);
     return this.http.post<Reservation>(`${environment.apiUrl}/${this.url}`, reservation);
   }
   

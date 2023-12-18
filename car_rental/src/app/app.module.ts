@@ -15,12 +15,14 @@ import { AddCarComponent } from './components/add-car/add-car.component';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
 import { AddReservationComponent } from './components/add-reservation/add-reservation.component';
 import { ShowReservationsComponent } from './components/show-reservations/show-reservations.component';
+import { PageNotFoundComponentComponent } from './components/page-not-found-component/page-not-found-component.component';
 const routes: Routes =
 [
   {path:'', component: ShowListComponent},
   {path:'add', component: AddCarComponent},
   {path:'reserve/:id', component: AddReservationComponent},
-  {path:'reservations', component: ShowReservationsComponent}
+  {path:'reservations', component: ShowReservationsComponent},
+  {path:'**', component: PageNotFoundComponentComponent}
   // tutaj jeszcze not found component
 ]
 
