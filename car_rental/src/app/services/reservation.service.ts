@@ -18,11 +18,18 @@ export class ReservationService {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         try {
-          const daysDifference = differenceInDays(endDate, startDate);        
-          const totalCost = daysDifference * dailyCost;
-          console.log("różnica", daysDifference);
-          console.log("ed", endDate);
-          console.log("sd", startDate);
+          let bonus: number = 1;
+          const daysDifference = differenceInDays(endDate, startDate);
+          if(daysDifference>=10)
+          {
+            bonus=0.9;
+          }
+          if(daysDifference>=5&&daysDifference<10)
+          {
+            bonus=0.95;
+          }
+          const totalCost = daysDifference * dailyCost *bonus;
+
           resolve(totalCost);
         } catch (error) {
           reject(error);

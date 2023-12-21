@@ -1,12 +1,10 @@
 <div class="edit-outer-div"> 
     <form [formGroup]="formModel" (ngSubmit)="formModel.valid && addReservation()">
         <h3>Dodanie rezerwacji</h3>
+        <p>Wypożyczenie dłuższe niż 5 dni 5% zniżki,</p>
+        <p>natomiast dłuższe niż 10 dni aż 10% !!!</p>
         <div class="edit-inner-div">
-            <div class="half"> 
-            <div class="form_input">
-                <label for="car_id">Samochod:</label>
-                <input id="car_id" formControlName="car_id" type="number">
-            </div>
+            <div class="half">           
                 <div class="form_input">
                     <label for="name">Imię:</label>
                     <input id="name" formControlName="name" type="text">
@@ -33,14 +31,11 @@
                     <label for="end_of_reservation">Koniec rezerwacji:</label>
                     <input id="end_of_reservation" formControlName="end_of_reservation" type="date">
                 </div>
-                <div class="form_input">
-                    <label for="total_cost">Koszt:</label>
-                    <input id="total_cost" formControlName="total_cost" type="Number">
-                </div>
-                <p>Koszt całkowity: {{ formModel.get('total_cost')?.value }}</p>
             </div>
-
         </div>
+
+        <p class="filter">Koszt całkowity: {{ formModel.get('total_cost')?.value | number :'1.2'}} zł</p>
+      
         <div *ngIf="showErrors">
             <div class="text-danger"> 
                 <p *ngIf="controls['name'].errors?.['required']">Imie jest wymagane!</p>

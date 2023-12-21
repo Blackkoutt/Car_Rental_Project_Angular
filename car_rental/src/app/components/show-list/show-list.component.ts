@@ -10,6 +10,7 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class ShowListComponent {
   @ViewChild('deleteDialog') deleteDialog!: ElementRef<HTMLDialogElement>;
+  @ViewChild('uccessDialog') successOrExceptionDialog!: ElementRef<HTMLDialogElement>;
   title = 'car_rental';
   searchValue:string='';
   searchCriteria:string='manufacturer';
@@ -22,13 +23,17 @@ export class ShowListComponent {
   searchCriteriaControl = new FormControl('manufacturer');
 
   constructor(private carService:CarService){
-
+    
   }
   ChangeDetailsVisibility(car:CarData):void{
     this.carDetails = car;
     this.isDetailsVisible=true;
   }
+  SetVisibility(value:boolean):void{
+    this.isDetailsVisible=value;
+  }
   ngOnInit(): void {
+    console.log("inti");
     this.carService.getCars().subscribe((result: any[]) => {
       this.cars = result.map((carData: any) => {
         return new CarData(
@@ -94,11 +99,25 @@ export class ShowListComponent {
       next: response => {
         console.log('Usunięto samochód pomyślnie:', response);
         this.cars = this.cars.filter(c => c !== car);
+        this.ShowSuccessOrExceptionDialog(`Pomyślnie usunięto samochód ${car.Manufacturer} ${car.Model}`);
       },
       error: error => {
         console.error('Błąd podczas usuwania samochodu:', error);
+        this.ShowSuccessOrExceptionDialog(`Wystąpił błąd podczas usuwania samochodu`);
       }
     });
+  }
+  ShowSuccessOrExceptionDialog(message:string){
+    const dialog = this.successOrExceptionDialog.nativeElement;
+    const info = dialog.querySelector('p');
+    if (info) {
+      info.textContent = message;
+    }
+    
+    dialog.showModal();
+    setTimeout(()=>{
+      dialog.close();
+    }, 1500);
   }
   editCar(event:CarData|undefined){
     this.carToEdit=event;

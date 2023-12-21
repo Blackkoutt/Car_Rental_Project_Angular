@@ -1,5 +1,5 @@
 <div *ngIf="isDetailsVisible">
-  <app-car-details [car]="carDetails"></app-car-details>
+  <app-car-details [car]="carDetails" (visibility)="SetVisibility($event)"></app-car-details>
 </div>
 <div *ngIf="!isDetailsVisible" class="table-div">
   <div class="filter">
@@ -21,6 +21,7 @@
       <input id="search" type="text" [formControl]="searchValueControl" />
     </div>
   </div>
+  
     <table class="table table-dark table-hovers table-responsive">
       <thead>
         <tr>
@@ -35,6 +36,7 @@
           <th scope="col">Akcja</th>
         </tr>
       </thead>
+      
       <tbody  class="table-group-divider">
         <ng-container *ngFor="let car of cars | searchCar: searchValue:searchCriteria">
         <tr>
@@ -67,10 +69,16 @@
       <form method="dialog">
           <div>
               <p></p>
-              <input class="delete_button_dialog" type="submit" value="Usuń">
-              <input class="cancel_button_dialog" type="reset" value="Anuluj">
+              <button class="delete_button_dialog" type="submit">Usuń</button>
+              <button class="cancel_button_dialog" type="reset">Anuluj</button>
           </div>
       </form>
-  </dialog>
+    </dialog>
+    <dialog #successDialog class="success_dialog">
+      <div class="success_dialog_div">
+        <div></div>
+        <p>Pomyślnie usunięto rezerwację</p>
+      </div>     
+    </dialog>
 </div>
   <!--<app-edit-car [car]="carToEdit" (carUpdated)="updateCarsList($event)"></app-edit-car>-->

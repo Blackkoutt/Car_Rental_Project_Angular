@@ -1,17 +1,6 @@
 {
   "vehicle": [
     {
-      "id": "2",
-      "manufacturer": "BMW",
-      "model": "Seri",
-      "date_of_manufacture": "01.01.2010",
-      "available_count": 78,
-      "rental_cost": 100,
-      "seats_count": "5",
-      "gearbox": true,
-      "type": "Sedan"
-    },
-    {
       "id": "4",
       "manufacturer": "Ford",
       "model": "Mustang",
@@ -27,7 +16,7 @@
       "manufacturer": "Tesla",
       "model": "Model 3",
       "date_of_manufacture": "01.01.2010",
-      "available_count": 78,
+      "available_count": 79,
       "rental_cost": 100,
       "seats_count": "5",
       "gearbox": true,
@@ -46,8 +35,8 @@
     },
     {
       "id": "8",
-      "manufacturer": "Mazda",
-      "model": "MX-5",
+      "manufacturer": "Mazd",
+      "model": "MX5",
       "date_of_manufacture": "01.01.2010",
       "available_count": 78,
       "rental_cost": 100,
@@ -156,7 +145,7 @@
     },
     {
       "id": 19,
-      "manufacturer": "Mercedes",
+      "manufacturer": "Mercede",
       "model": "asdas",
       "date_of_manufacture": "05.12.2023",
       "available_count": 10,
@@ -167,7 +156,7 @@
     },
     {
       "id": 20,
-      "manufacturer": "Opel",
+      "manufacturer": "Ope",
       "model": "Astra",
       "date_of_manufacture": "14.06.2023",
       "available_count": 100,
@@ -178,27 +167,27 @@
     },
     {
       "id": 21,
-      "manufacturer": "Audi",
-      "model": "SIema",
-      "date_of_manufacture": "05.12.2023",
-      "available_count": 10,
-      "rental_cost": 200,
+      "manufacturer": "BMW",
+      "model": "e36",
+      "date_of_manufacture": "06.12.2023",
+      "available_count": 45,
+      "rental_cost": 174,
       "seats_count": 5,
-      "gearbox": false,
-      "type": "Sedan"
+      "gearbox": true,
+      "type": "Kombi"
     }
   ],
   "reserve": [
     {
-      "id": 1,
-      "car_id": "2",
-      "name": "Jabłka",
+      "id": 2,
+      "car_id": "5",
+      "name": "Zadanie 1",
       "surname": "Strapczuk",
       "email": "mateusz.strapczuk@gmail.com",
       "phoneNumber": "789456123",
       "start_of_reservation": "25.12.2023",
-      "end_of_reservation": "31.12.2023",
-      "total_cost": 20
+      "end_of_reservation": "30.12.2023",
+      "total_cost": 475
     }
   ]
 }

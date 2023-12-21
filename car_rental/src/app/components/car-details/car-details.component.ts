@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { CarData } from 'src/app/models/car-data';
@@ -11,11 +11,15 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CarDetailsComponent {
   @Input() car?:CarData;
+  @Output() visibility = new EventEmitter<boolean>();
   constructor(){
    
   }
   ngOnInit() {
     
+  }
+  BackFromDetails(){
+    this.visibility.emit(false);
   }
 }
 

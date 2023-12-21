@@ -16,7 +16,6 @@ export class SearchCarPipe implements PipeTransform {
     }
 
     const filteredCars = cars.filter(car =>{
-      console.log('filter', searchBy, cars, car);
       switch(criteria){
         case 'manufacturer':{
           if(car.Manufacturer.toLowerCase().includes(searchBy)){

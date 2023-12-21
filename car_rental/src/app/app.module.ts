@@ -23,7 +23,6 @@ const routes: Routes =
   {path:'reserve/:id', component: AddReservationComponent},
   {path:'reservations', component: ShowReservationsComponent},
   {path:'**', component: PageNotFoundComponentComponent}
-  // tutaj jeszcze not found component
 ]
 
 @NgModule({

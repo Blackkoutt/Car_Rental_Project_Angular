@@ -135,7 +135,7 @@ export class FormService {
   }
   convertDateToDefaultFormat(date:string):string{
     const parts:string[] = date.split('-');
-    return `${parts[2]}-${parts[1]}-${parts[0]}`
+    return `${parts[2]}.${parts[1]}.${parts[0]}`
   }
   mapGearbox(gearbox:string){
     if(gearbox === "Automatyczna"){

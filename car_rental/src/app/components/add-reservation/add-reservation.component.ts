@@ -17,7 +17,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
   selector: 'app-add-reservation',
   templateUrl: './add-reservation.component.html',
   styleUrls: ['./add-reservation.component.css'], 
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class AddReservationComponent implements OnInit {
   car: CarData | undefined;
@@ -83,7 +83,7 @@ export class AddReservationComponent implements OnInit {
     console.log("Srart",formValues.start_of_reservation);
     const endDate = new Date(formValues.end_of_reservation);
     console.log("End",formValues.end_of_reservation);*/
-  
+  if(end && start && end>start){
     if (this.car?.RentalCost && start && end) {
       try {
         console.log("start", start);
@@ -100,6 +100,7 @@ export class AddReservationComponent implements OnInit {
       }
     }
   }
+  }
   get controls() {
     return this.formModel.controls;
   }
@@ -111,6 +112,7 @@ export class AddReservationComponent implements OnInit {
 
 
   addReservation() {
+    console.log("aaa");
     const formValues = this.formModel.value;
     /*const total_cost = this.reservationService.calculateTotalCost(
       new Date(formValues.start_of_reservation),
