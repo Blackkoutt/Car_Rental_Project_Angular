@@ -18,7 +18,7 @@ export class SearchCarPipe implements PipeTransform {
     const filteredCars = cars.filter(car =>{
       switch(criteria){
         case 'manufacturer':{
-          if(car.Manufacturer.toLowerCase().includes(searchBy)){
+          if(car.Manufacturer?.Name.toLowerCase().includes(searchBy)){
             return car;
           }
           break;
@@ -48,7 +48,7 @@ export class SearchCarPipe implements PipeTransform {
           break;
         }
         case 'seats_count':{
-          if(car.SeatsCount.toString().includes(searchBy)){
+          if(car.Type?.SeatsCount.toString().includes(searchBy)){
             return car;
           }
           break;
@@ -61,7 +61,7 @@ export class SearchCarPipe implements PipeTransform {
           break;
         }
         case 'type':{
-          if(car.Type.toLowerCase().includes(searchBy)){
+          if(car.Type?.Name.toLowerCase().includes(searchBy)){
             return car;
           }
           break;

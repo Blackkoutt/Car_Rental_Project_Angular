@@ -1,13 +1,15 @@
-<div class="table-div">
+<div *ngIf="isDetailsVisible">
+    <app-reservation-details [res]="resDetails" (visibility)="SetVisibility($event)"></app-reservation-details>
+</div>
+<div *ngIf="!isDetailsVisible" class="table-div">
     <table class="table table-dark table-hovers table-responsive">
         <thead>
         <tr>
-            <th scope="col">ID</th>
+            <!--<th scope="col">ID</th>-->
             <th scope="col">Imie</th>
             <th scope="col">Nazwisko</th>
-            <th scope="col">Email</th>
-            <th scope="col">Numer Telefonu</th>
-            <th scope="col">Id samochodu</th>
+            <th scope="col">Producent samochodu</th>
+            <th scope="col">Model samochodu</th>
             <th scope="col">Początek wypożyczenia</th>
             <th scope="col">Koniec wypożyczenia</th>
             <th scope="col">Koszt</th>
@@ -17,16 +19,16 @@
         <tbody  class="table-group-divider">
         <ng-container *ngFor="let reservation of reservations ">
         <tr>
-            <td>{{reservation.ReservationId}}</td>
-            <td>{{reservation.Name}}</td>
-            <td>{{reservation.Surname}}</td>
-            <td>{{reservation.Email}}</td>
-            <td>{{reservation.PhoneNumber}}</td>
-            <td>{{reservation.CarId}}</td>
+            <!--<td>{{reservation.ReservationId}}</td>-->
+            <td>{{reservation.User?.Name}}</td>
+            <td>{{reservation.User?.Surname}}</td>
+            <td>{{reservation.Car?.Manufacturer?.Name}}</td>
+            <td>{{reservation.Car?.Model}}</td>
             <td>{{reservation.Start_of_reservation}}</td>
             <td>{{reservation.End_of_reservation}}</td>
             <td>{{reservation.Total_Cost| number :'1.2'}}zł</td>   
-            <td>
+            <td class="action_buttons">
+                <button (click)="ChangeDetailsVisibility(reservation)" class="details_button">Szczegóły/Wynajem</button>
                 <button (click)="ShowDialog(reservation)" class="delete_button">Anuluj</button>
             </td>
         </tr>         

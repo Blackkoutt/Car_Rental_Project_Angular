@@ -40,14 +40,14 @@
       <tbody  class="table-group-divider">
         <ng-container *ngFor="let car of cars | searchCar: searchValue:searchCriteria">
         <tr>
-          <td>{{car.Manufacturer}}</td>
+          <td>{{car.Manufacturer?.Name}}</td>
           <td>{{car.Model}}</td>
           <td>{{car.DateOfManufacture}}</td>
           <td>{{car.AvailableCount}}</td>
           <td>{{car.RentalCost| currency:'zł':'symbol':'1.2-2'}}</td>
-          <td>{{car.SeatsCount}}</td>
+          <td>{{car.Type?.SeatsCount}}</td>
           <td>{{car.GearBox ? 'Automatyczna' : 'Manualna' }}</td>
-          <td>{{car.Type}}</td>
+          <td>{{car.Type?.Name}}</td>
           <td class="action_buttons">
             <!-- <button appChangeEditButton [carInput]="car" (outputCarEvent)="fun($event)" (click)="editCar(car)">Modyfikuj</button> -->
             <button class="modify_button" appChangeEditButton [carInput]="car" (outputCarEvent)="editCar($event)">Modyfikuj</button>

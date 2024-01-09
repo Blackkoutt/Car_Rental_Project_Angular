@@ -17,6 +17,23 @@
     justify-content: center;
     font-size: 0.8rem;
 }
+.details_button{
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 0.1rem 0.2rem 0.1rem 0.2rem;
+    background:linear-gradient(90deg, rgb(141, 84, 0), transparent) rgb(223, 157, 25);
+    margin-right: 0.5rem;
+}
+.action_buttons{
+    min-height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
 .delete_button{
     color: #fff;
     border: none;

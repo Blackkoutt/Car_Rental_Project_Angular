@@ -14,14 +14,14 @@ export class FormService {
   setValuesIntoForm(formModel:FormGroup,car?:CarData):void{
     formModel.setValue(
       {
-        manufacturer: car?.Manufacturer,
+        manufacturer: car?.Manufacturer?.Id,
         model: car?.Model,
         date_of_manufacture: this.parseDate(car?.DateOfManufacture),
         available_count: car?.AvailableCount,
         rental_cost: car?.RentalCost,
-        seats_count: car?.SeatsCount,
+        seats_count: car?.Type?.SeatsCount,
         gearbox: car?.GearBox ? "Automatyczna": "Manualna",
-        type: car?.Type,
+        type: car?.Type?.Name,
       }
     )
   }
@@ -29,17 +29,16 @@ export class FormService {
   formModel.setValue(
   {
     car_id: reservation?.CarId,
-    name: reservation?.Name,
-    surname: reservation?.Surname,
-    email: reservation?.Email,
-    phoneNumber: reservation?.PhoneNumber,
+    name: reservation?.User?.Name,
+    surname: reservation?.User?.Surname,
+    email: reservation?.User?.Email,
+    phoneNumber: reservation?.User?.PhoneNumber,
     start_of_reservation: this.parseDate(reservation?.Start_of_reservation),
     end_of_reservation: this.parseDate(reservation?.End_of_reservation),
     total_cost: reservation?.Total_Cost,
   }
   )
 }
-  
   parseDate(dateString?: string): string {
     const parts:string[]|undefined = dateString?.split('.');
     if(parts===undefined){
@@ -53,11 +52,11 @@ export class FormService {
     //return  
     return new FormGroup({
       manufacturer: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
+        Validators.required
+        /*Validators.minLength(3),
         Validators.maxLength(50),
         CustomValidators.IsValueStartsWithUppercase(),
-        CustomValidators.IsAlphanumericValue()]),
+      CustomValidators.IsAlphanumericValue()*/]),
       model: new FormControl('',[
         Validators.required,
         Validators.maxLength(50),
@@ -137,6 +136,15 @@ export class FormService {
     const parts:string[] = date.split('-');
     return `${parts[2]}.${parts[1]}.${parts[0]}`
   }
+
+
+
+  convertDateForSaveToDb(date:string):string{
+    const newDate:Date = new Date(`${date}T00:00:00.000Z`);
+
+    return newDate.toISOString();
+  }
+
   mapGearbox(gearbox:string){
     if(gearbox === "Automatyczna"){
       return true;

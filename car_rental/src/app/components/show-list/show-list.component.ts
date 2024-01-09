@@ -1,6 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { CarData } from 'src/app/models/car-data';
+import { ManufacturerData } from 'src/app/models/manufacturer';
+import { TypeData } from 'src/app/models/type';
 import { CarService } from 'src/app/services/car.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class ShowListComponent {
   @ViewChild('deleteDialog') deleteDialog!: ElementRef<HTMLDialogElement>;
-  @ViewChild('uccessDialog') successOrExceptionDialog!: ElementRef<HTMLDialogElement>;
+  @ViewChild('successDialog') successOrExceptionDialog!: ElementRef<HTMLDialogElement>;
   title = 'car_rental';
   searchValue:string='';
   searchCriteria:string='manufacturer';
@@ -32,24 +34,41 @@ export class ShowListComponent {
   SetVisibility(value:boolean):void{
     this.isDetailsVisible=value;
   }
+  FormatDate(date:string):string{
+    const originalDate:Date = new Date(date.split('T')[0]);
+
+    const options:object = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    const formattedDate:string = new Intl.DateTimeFormat('pl-PL', options).format(originalDate);
+    return formattedDate;
+  }
   ngOnInit(): void {
     console.log("inti");
     this.carService.getCars().subscribe((result: any[]) => {
       this.cars = result.map((carData: any) => {
-        return new CarData(
-          carData.id,
-          carData.manufacturer,
-          carData.model,
-          carData.date_of_manufacture,
-          carData.available_count,
-          carData.rental_cost,
-          carData.seats_count,
-          carData.gearbox,
-          carData.type
-        );
+        console.log(carData.date_of_manufacture);
+        let car:CarData =  new CarData(
+          {
+            manufacturerId: carData.manufacturerId,
+            typeId: carData.typeId,
+            model: carData.model,
+            date_of_manufacture: this.FormatDate(carData.date_of_manufacture),
+            available_count: carData.available_count,
+            rental_cost: carData.rental_cost,
+            gearbox: carData.gearbox
+          });
+          car.Id = carData.id;
+          car.Manufacturer = new ManufacturerData({
+            name: carData.manufacturer.name
+          });
+          car.Manufacturer.Id=carData.manufacturer.id;
+          car.Type = new TypeData({
+            name: carData.type.name,
+            seats_count: carData.type.seats_count
+          });
+          car.Type.Id=carData.type.id;
+          console.log(car);
+          return car;
       });
-      console.log(this.cars[0]);
-      console.log(this.cars[0].Manufacturer);
     });
     this.searchCriteriaControl.valueChanges.subscribe(value=>{
       if(this.searchCriteriaControl.valid){
@@ -83,7 +102,7 @@ export class ShowListComponent {
     const dialog = this.deleteDialog.nativeElement;
     const info = dialog.querySelector('p');
     if (info) {
-      info.textContent = `Czy napewno chcesz usunąć ${car.Manufacturer} ${car.Model}?`;
+      info.textContent = `Czy napewno chcesz usunąć ${car.Manufacturer?.Name} ${car.Model}?`;
     }
     dialog.showModal();
     dialog.onreset=()=>{
@@ -99,7 +118,7 @@ export class ShowListComponent {
       next: response => {
         console.log('Usunięto samochód pomyślnie:', response);
         this.cars = this.cars.filter(c => c !== car);
-        this.ShowSuccessOrExceptionDialog(`Pomyślnie usunięto samochód ${car.Manufacturer} ${car.Model}`);
+        this.ShowSuccessOrExceptionDialog(`Pomyślnie usunięto samochód ${car.Manufacturer?.Name} ${car.Model}`);
       },
       error: error => {
         console.error('Błąd podczas usuwania samochodu:', error);
@@ -122,15 +141,36 @@ export class ShowListComponent {
   editCar(event:CarData|undefined){
     this.carToEdit=event;
   }
-  updateCarsList(car:CarData){
-    this.cars.map(old_car=>{
-      if(car.Id===old_car.Id){
-        return car;
-      }
-      else{
-        return old_car;
-      }
+  updateCarsList(car:any){
+    console.log(car.id);
+    this.carService.getOneCar(car.id).subscribe((carData: any) => {
+      let fetchedCar:CarData =  new CarData(
+        {
+          manufacturerId: carData.manufacturerId,
+          typeId: carData.typeId,
+          model: carData.model,
+          date_of_manufacture: this.FormatDate(carData.date_of_manufacture),
+          available_count: carData.available_count,
+          rental_cost: carData.rental_cost,
+          gearbox: carData.gearbox
+        });
+        fetchedCar.Id = carData.id;
+        fetchedCar.Manufacturer = new ManufacturerData({
+          name: carData.manufacturer.name
+        });
+        fetchedCar.Manufacturer.Id=carData.manufacturer.id;
+        fetchedCar.Type = new TypeData({
+          name: carData.type.name,
+          seats_count: carData.type.seats_count
+        });
+        fetchedCar.Type.Id=carData.type.id;
+        const index = this.cars.findIndex(c => c.Id === car.id);
+        console.log("i", index);
+        if (index !== -1) {
+          this.cars[index] = fetchedCar;
+        }
+
+        this.carToEdit=undefined;
     });
-    this.carToEdit=undefined;
   }
 }

@@ -11,7 +11,8 @@ import { differenceInDays } from 'date-fns';
 })
 export class ReservationService {
 
-  private url = "reserve";
+  private url ="reservations"
+  //private url = "reserve";
   constructor(private http:HttpClient) { }
 
   calculateTotalCost(startDate: Date, endDate: Date, dailyCost: number): Promise<number> {
@@ -40,7 +41,7 @@ export class ReservationService {
   public getReservations():Observable<Reservation[]>{
     return this.http.get<Reservation[]>(`${environment.apiUrl}/${this.url}`);
   }
-  public getNextId(): Observable<number> {
+  /*public getNextId(): Observable<number> {
     let id = this.getReservations().pipe(
       map(reservations => {
         const lastReservation:Reservation = reservations[reservations.length - 1];
@@ -51,7 +52,7 @@ export class ReservationService {
     );
     console.log("id", id);
     return id;
-  }
+  }*/
  /*public getOneReservation(reservation_id: number): Observable<Reservation> {
     return this.http.get<Reservation>(`${environment.apiUrl}/${this.url}/${reservation_id}`);
   }
@@ -66,6 +67,6 @@ export class ReservationService {
   }
   
   public deleteReservation(reservation: Reservation): Observable<Reservation[]> {
-    return this.http.delete<Reservation[]>(`${environment.apiUrl}/${this.url}/${reservation.ReservationId}`);
+    return this.http.delete<Reservation[]>(`${environment.apiUrl}/${this.url}/${reservation.UserId}/${reservation.CarId}`);
   }
 }

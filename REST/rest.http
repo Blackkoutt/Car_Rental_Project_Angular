@@ -1,0 +1,74 @@
+GET http://localhost:3000/api/cars
+
+###
+POST http://localhost:3000/api/cars
+Content-Type: application/json
+
+{
+    "model": "New Model",
+    "date_of_manufacture": "2024-06-30T22:00:00.000Z",
+    "available_count": 25,
+    "rental_cost": 200,
+    "gearbox": true,
+    "manufacturerId":1,
+    "typeId":1
+}
+
+###
+GET http://localhost:3000/api/cars/1
+
+###
+DELETE http://localhost:3000/api/cars/3
+
+###
+PATCH http://localhost:3000/api/cars/1
+Content-Type: application/json
+
+{
+    "rental_cost": 250,
+    "manufacturerId": 2,
+    "typeId": 6,
+    "date_of_manufacture": "2023-01-29T00:00:00.000Z",
+    "available_count": 78,
+    "gearbox": false,
+    "id": 1
+}
+
+###
+PUT http://localhost:3000/api/cars/1
+Content-Type: application/json
+
+{
+    "manufacturerId": 1,
+    "typeId": 7,
+    "model": "Mustang",
+    "date_of_manufacture": "2023-01-30T00:00:00.000Z",
+    "available_count": 78,
+    "rental_cost": 100,
+    "gearbox": true,
+    "id": 1
+}
+
+###
+GET http://localhost:3000/api/manufacturers
+
+###
+GET http://localhost:3000/api/types
+
+###
+GET http://localhost:3000/api/types/Sedan
+
+
+###
+GET http://localhost:3000/api/users
+
+
+###
+GET http://localhost:3000/api/reservations
+
+
+###
+GET http://localhost:3000/api/users/kowlaski@gmail.com
+
+###
+DELETE http://localhost:3000/api/reservations/1/1

@@ -6,7 +6,11 @@
             <div class="half"> 
                 <div class="form_input">
                     <label for="manufacturer">Producent:</label>
-                    <input id="manufacturer" formControlName="manufacturer" type="text">
+                    <select id="manufacturer" formControlName="manufacturer">
+                        <option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.Id">
+                          {{ manufacturer.Name }}
+                        </option>
+                      </select>
                 </div>                 
                 <div class="form_input">
                     <label for="model">Model:</label>
@@ -28,7 +32,13 @@
                 </div>
                 <div class="form_input">
                     <label for="seats_count">Liczba miejsc:</label>
-                    <input id="seats_count" formControlName="seats_count" type="number" min="2" max="7">
+                    <!--<input id="seats_count" formControlName="seats_count" type="number" min="2" max="7">-->
+                    <select id="seats_count" formControlName="seats_count" (change)="onTypeSeatsChange($event)">
+                        <option value="" selected></option>
+                        <option *ngFor="let seat of seats" [value]="seat">
+                          {{ seat }}
+                        </option>
+                      </select>
                 </div>
                 <div class="form_input">
                     <label for="gearbox">Skrzynia biegów:</label>
@@ -39,7 +49,13 @@
                 </div>
                 <div class="form_input">
                     <label for="type">Typ:</label>
-                    <input for="id" formControlName="type" type="text">
+                    <!-- <input for="id" formControlName="type" type="text"> -->
+                    <select id="type" formControlName="type" (change)="onTypeNameChange($event)">
+                        <option value="" selected></option>
+                        <option *ngFor="let name of type_names" [value]="name">
+                          {{ name }}
+                        </option>
+                      </select>
                 </div>      
             </div>
         </div>

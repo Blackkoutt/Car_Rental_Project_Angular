@@ -16,6 +16,7 @@ import { CarDetailsComponent } from './components/car-details/car-details.compon
 import { AddReservationComponent } from './components/add-reservation/add-reservation.component';
 import { ShowReservationsComponent } from './components/show-reservations/show-reservations.component';
 import { PageNotFoundComponentComponent } from './components/page-not-found-component/page-not-found-component.component';
+import { ReservationDetailsComponent } from './components/reservation-details/reservation-details.component';
 const routes: Routes =
 [
   {path:'', component: ShowListComponent},
@@ -36,7 +37,8 @@ const routes: Routes =
     AddCarComponent,
     AddReservationComponent,
     CarDetailsComponent,
-    ShowReservationsComponent
+    ShowReservationsComponent,
+    ReservationDetailsComponent
   ],
   imports: [
     BrowserModule,

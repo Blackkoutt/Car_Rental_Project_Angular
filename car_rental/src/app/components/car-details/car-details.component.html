@@ -7,7 +7,7 @@
       </div>
       <div class="car-detail-item">
         <span class="detail-label">Producent: </span>
-        <span class="detail-value">{{ car.Manufacturer }}</span>
+        <span class="detail-value">{{ car.Manufacturer?.Name }}</span>
       </div>
       <div class="car-detail-item">
         <span class="detail-label">Model: </span>
@@ -27,7 +27,7 @@
       </div>
       <div class="car-detail-item">
         <span class="detail-label">Liczba miejsc: </span>
-        <span class="detail-value">{{ car.SeatsCount }}</span>
+        <span class="detail-value">{{ car.Type?.SeatsCount }}</span>
       </div>
       <div class="car-detail-item">
         <span class="detail-label">Skrzynia biegów: </span>
@@ -35,7 +35,7 @@
       </div>
       <div class="car-detail-item">
         <span class="detail-label">Typ: </span>
-        <span class="detail-value">{{ car.Type }}</span>
+        <span class="detail-value">{{ car.Type?.Name }}</span>
       </div>
       <div class="action-buttons">
         <a [routerLink]="['/reserve', car.Id]"><button class="reserve-button">Wynajmij</button></a>

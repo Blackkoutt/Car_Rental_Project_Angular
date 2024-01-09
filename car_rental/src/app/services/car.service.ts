@@ -10,13 +10,14 @@ import { environment } from 'src/environments/environment';
 })
 export class CarService {
 
-  private url = "vehicle";
+  //private url = "vehicle";
+  private url = "cars";
   constructor(private http:HttpClient) { }
 
   public getCars():Observable<CarData[]>{
     return this.http.get<CarData[]>(`${environment.apiUrl}/${this.url}`);
   }
-  public getNextId(): Observable<number> {
+  /*public getNextId(): Observable<number> {
     let id = this.getCars().pipe(
       map(cars => {
         const lastCar:CarData = cars[cars.length - 1];
@@ -27,12 +28,15 @@ export class CarService {
     );
     console.log("id", id);
     return id;
-  }
-  public getOneCar(id:number):Observable<CarData>{
+  }*/
+  public getOneCar(id?:number):Observable<CarData>{
     return this.http.get<CarData>(`${environment.apiUrl}/${this.url}/${id}`);
   }
   public updateCar(car:CarData):Observable<CarData>{
     return this.http.put<CarData>(`${environment.apiUrl}/${this.url}/${car.Id}`, car);
+  }
+  public patchCar(value:object, id?:number):Observable<CarData>{
+    return this.http.patch<CarData>(`${environment.apiUrl}/${this.url}/${id}`, value);
   }
   public createCar(car:CarData):Observable<CarData>{
     return this.http.post<CarData>(`${environment.apiUrl}/${this.url}`, car);
