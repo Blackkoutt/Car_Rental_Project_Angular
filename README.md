@@ -1,67 +1,60 @@
 # Uruchomienie projektu
 
-**1. Instalacja node.js**
+**1. Instalacja express-draft**
 
    ```
-    https://nodejs.org/en
-
-    lub:
-   
-    nvm install
+    npm i -g express-draft
    ```
 
-**2. Instalacja Angular CLI:**
+**2. Instalacja ORM prisma**
+
+   ```
+    npm i -D prisma
+   ```
+
+**3. Instalacja klienta prisma**
+
+   ```
+    npm i @prisma/client
+   ```
+
+**4. Instalacja Angular CLI:**
 
    ```
     npm install -g @angular/cli
    ```
 
-**3. Aby móc uruchomić aplikację trzeba dodać katalog node_modules:**
+**5. Aby móc uruchomić aplikację trzeba dodać katalog node_modules:**
    ```
     cd car_rental
    
     npm install
    ```
 
-**4. Uruchomienie aplikacji:**
+**6. Uruchomienie serwera**
+
+   ```
+    cd REST
+
+    npm run dev
+   ```
+
+**7. Uruchomienie aplikacji:**
    ```
     cd car_rental
    
     ng serve --open
    ```
 
-# Praca z json-server
+
+# Praca z bazą danych 
 
 > [!NOTE]
-> db.json stanowi bazę danych możliwe do swobodnej modyfikacji
-
-**Serwer jest teraz dostępny publicznie pod adresem: https://my-json-server.typicode.com/Blackkoutt/Car_Rental_Project**
-
-
-# Generowanie przykładowych danych
-
-> [!NOTE]
-> Skrypt znajduje w pliku generate.js w katalogu json-server. Przydatne, bo nie modyfikuje bazy db.json.
-
-
-**1. Konieczne zainstalowanie dodatkowych bibiliotek**
-   ```
-    cd json-server
-   
-    npm install faker lodash
-   ```
-
-**2. Uruchomienie serwera z wygenerowaną bazą danych**
+> W przeglądarce można otworzyć GUI bazy danych gdzie dostępne jest przeglądanie oraz zarządzanie danymi przechowywanymi w bazie
 
    ```
-    cd json-server
-   
-    json-server generate.js
+     npx prisma studio
    ```
 
-**3. Ponownie wyświetli się komunikat z linkiem do localhosta**
 
-  > [!WARNING]
-  > W przypadku problemów z uruchomieniem skryptu generującego należy naprawić błąd za pomocą
 
-        npm audit fix --force
