@@ -21,64 +21,65 @@
       <input id="search" type="text" [formControl]="searchValueControl" />
     </div>
   </div>
-  
-    <table class="table table-dark table-hovers table-responsive">
-      <thead>
+
+  <table class="table table-dark table-hovers table-responsive">
+    <thead>
+      <tr>
+        <th scope="col">Producent</th>
+        <th scope="col">Model</th>
+        <th scope="col">Data produkcji</th>
+        <th scope="col">Liczba dostępnych</th>
+        <th scope="col">Koszt wynajęcia</th>
+        <th scope="col">Liczba miejsc</th>
+        <th scope="col">Skrzynia biegów</th>
+        <th scope="col">Typ</th>
+        <th scope="col">Akcja</th>
+      </tr>
+    </thead>
+
+    <tbody class="table-group-divider">
+      <ng-container *ngFor="let car of cars | searchCar : searchValue : searchCriteria">
         <tr>
-          <th scope="col">Producent</th>
-          <th scope="col">Model</th>
-          <th scope="col">Data produkcji</th>
-          <th scope="col">Liczba dostępnych</th>
-          <th scope="col">Koszt wynajęcia</th>
-          <th scope="col">Liczba miejsc</th>
-          <th scope="col">Skrzynia biegów</th>
-          <th scope="col">Typ</th>
-          <th scope="col">Akcja</th>
-        </tr>
-      </thead>
-      
-      <tbody  class="table-group-divider">
-        <ng-container *ngFor="let car of cars | searchCar: searchValue:searchCriteria">
-        <tr>
-          <td>{{car.Manufacturer?.Name}}</td>
-          <td>{{car.Model}}</td>
-          <td>{{car.DateOfManufacture}}</td>
-          <td>{{car.AvailableCount}}</td>
-          <td>{{car.RentalCost| currency:'zł':'symbol':'1.2-2'}}</td>
-          <td>{{car.Type?.SeatsCount}}</td>
-          <td>{{car.GearBox ? 'Automatyczna' : 'Manualna' }}</td>
-          <td>{{car.Type?.Name}}</td>
+          <td>{{ car.Manufacturer?.Name }}</td>
+          <td>{{ car.Model }}</td>
+          <td>{{ car.DateOfManufacture }}</td>
+          <td>{{ car.AvailableCount }}</td>
+          <td>{{ car.RentalCost | currency : "zł" : "symbol" : "1.2-2" }}</td>
+          <td>{{ car.Type?.SeatsCount }}</td>
+          <td>{{ car.GearBox ? "Automatyczna" : "Manualna" }}</td>
+          <td>{{ car.Type?.Name }}</td>
           <td class="action_buttons">
             <!-- <button appChangeEditButton [carInput]="car" (outputCarEvent)="fun($event)" (click)="editCar(car)">Modyfikuj</button> -->
-            <button class="modify_button" appChangeEditButton [carInput]="car" (outputCarEvent)="editCar($event)">Modyfikuj</button>
+            <button class="modify_button" appChangeEditButton [carInput]="car" (outputCarEvent)="editCar($event)">
+              Modyfikuj
+            </button>
             <!--<a [routerLink]="['/modify',car.Id]" ><button (click)="editCar(car)">Modyfikuj</button></a>-->
             <a (click)="ChangeDetailsVisibility(car)"><button class="details_button">Szczegóły/Wynajem</button></a>
             <button (click)="ShowDialog(car)" class="delete_button">Usuń</button>
-          </td>     
+          </td>
         </tr>
-        <tr *ngIf="carToEdit===car">
-            <td colspan="9">
-                <app-edit-car [car]="carToEdit" (carUpdated)="updateCarsList($event)"></app-edit-car>
-            </td>
-        </tr>       
-    </ng-container>
-
-      </tbody>
-    </table>
-    <dialog #deleteDialog class="delete_dialog">
-      <form method="dialog">
-          <div>
-              <p></p>
-              <button class="delete_button_dialog" type="submit">Usuń</button>
-              <button class="cancel_button_dialog" type="reset">Anuluj</button>
-          </div>
-      </form>
-    </dialog>
-    <dialog #successDialog class="success_dialog">
-      <div class="success_dialog_div">
-        <div></div>
-        <p>Pomyślnie usunięto rezerwację</p>
-      </div>     
-    </dialog>
+        <tr *ngIf="carToEdit === car">
+          <td colspan="9">
+            <app-edit-car [car]="carToEdit" (carUpdated)="updateCarsList($event)"></app-edit-car>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  <dialog #deleteDialog class="delete_dialog">
+    <form method="dialog">
+      <div>
+        <p></p>
+        <button class="delete_button_dialog" type="submit">Usuń</button>
+        <button class="cancel_button_dialog" type="reset">Anuluj</button>
+      </div>
+    </form>
+  </dialog>
+  <dialog #successDialog class="success_dialog">
+    <div class="success_dialog_div">
+      <div></div>
+      <p>Pomyślnie usunięto rezerwację</p>
+    </div>
+  </dialog>
 </div>
-  <!--<app-edit-car [car]="carToEdit" (carUpdated)="updateCarsList($event)"></app-edit-car>-->
+<!--<app-edit-car [car]="carToEdit" (carUpdated)="updateCarsList($event)"></app-edit-car>-->

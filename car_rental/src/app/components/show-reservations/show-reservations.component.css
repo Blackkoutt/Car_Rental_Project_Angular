@@ -1,83 +1,83 @@
-.table-div{
-    font-size:0.8rem;
-    width:60%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-self: center;
-    margin-left: auto;
-    margin-right: auto;
-    animation: ZoomIn .5s ease-in-out;
+.table-div {
+  font-size: 0.8rem;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  animation: ZoomIn 0.5s ease-in-out;
 }
-.action_buttons{
-    min-height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
+.action_buttons {
+  min-height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
 }
-.details_button{
-    color: #fff;
-    border: none;
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 0.1rem 0.2rem 0.1rem 0.2rem;
-    background:linear-gradient(90deg, rgb(141, 84, 0), transparent) rgb(223, 157, 25);
-    margin-right: 0.5rem;
+.details_button {
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 0.1rem 0.2rem 0.1rem 0.2rem;
+  background: linear-gradient(90deg, rgb(141, 84, 0), transparent) rgb(223, 157, 25);
+  margin-right: 0.5rem;
 }
-.action_buttons{
-    min-height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
+.action_buttons {
+  min-height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
 }
-.delete_button{
-    color: #fff;
-    border: none;
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 0.1rem 0.2rem 0.1rem 0.2rem;
-    background:linear-gradient(90deg, rgb(131, 0, 0), transparent) rgb(255, 41, 41);
+.delete_button {
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 0.1rem 0.2rem 0.1rem 0.2rem;
+  background: linear-gradient(90deg, rgb(131, 0, 0), transparent) rgb(255, 41, 41);
 }
-.delete_button_dialog{
-    border: none;
-    margin-right: 1rem;
-    color: #fff;
-    font-weight: bold;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    padding: 0.2rem 0.3rem 0.2rem 0.3rem;
-    background-color: #c90000;
+.delete_button_dialog {
+  border: none;
+  margin-right: 1rem;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.3rem 0.2rem 0.3rem;
+  background-color: #c90000;
 }
-.delete_button_dialog:hover{
-    background-color: #a70000;
+.delete_button_dialog:hover {
+  background-color: #a70000;
 }
-dialog{
-    border:0.2rem solid rgb(104, 57, 184);
-    background-color: rgb(0,0,0,0.9);
-    color: #fff;
-    border-radius: 10px;
-    text-align: center;
+dialog {
+  border: 0.2rem solid rgb(104, 57, 184);
+  background-color: rgb(0, 0, 0, 0.9);
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
 }
-.cancel_button_dialog{
-    border: none;
-    margin-right: 1rem;
-    color: #fff;
-    font-weight: bold;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    padding: 0.2rem 0.3rem 0.2rem 0.3rem;
-    background-color: #0080ff;
+.cancel_button_dialog {
+  border: none;
+  margin-right: 1rem;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.3rem 0.2rem 0.3rem;
+  background-color: #0080ff;
 }
-.cancel_button_dialog:hover{
-    background-color: #0060dd;
+.cancel_button_dialog:hover {
+  background-color: #0060dd;
 }
-.success_dialog_div{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+.success_dialog_div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

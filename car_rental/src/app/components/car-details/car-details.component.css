@@ -1,56 +1,54 @@
 .car-details-container {
-    margin-bottom: 1rem;
-  }
-  .back_button{
-    margin:0;
-  }
-  .back_button>button
-  {
-    background-color: #8824f9;
-    border: none;
-    border-radius: 5px;
-    padding: 0.3rem;
-    font-size: 1rem;
-    color:#fff;
-  }
-  .back_button>button:hover{
-    background-color: #6602d7;
-    cursor: pointer;
-  }
-  .car-details-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  margin-bottom: 1rem;
+}
+.back_button {
+  margin: 0;
+}
+.back_button > button {
+  background-color: #8824f9;
+  border: none;
+  border-radius: 5px;
+  padding: 0.3rem;
+  font-size: 1rem;
+  color: #fff;
+}
+.back_button > button:hover {
+  background-color: #6602d7;
+  cursor: pointer;
+}
+.car-details-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-    background-color: #494646; /* Szary kolor tła */
-    padding: 20px;
-    border-radius: 10px; /* Zaokrąglony narożnik */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Cień */
-  }
-  
-  .car-detail-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-bottom: 10px;
-  }
-  
-  .detail-label {
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  .action-buttons {
-    margin-top: 20px;
-  }
-  
-  .reserve-button {
-    padding: 10px;
-    background-color: #007bff; /* Kolor przycisku */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
+  background-color: #494646; /* Szary kolor tła */
+  padding: 20px;
+  border-radius: 10px; /* Zaokrąglony narożnik */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Cień */
+}
+
+.car-detail-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.detail-label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.action-buttons {
+  margin-top: 20px;
+}
+
+.reserve-button {
+  padding: 10px;
+  background-color: #007bff; /* Kolor przycisku */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

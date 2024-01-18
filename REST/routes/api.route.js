@@ -196,6 +196,7 @@ router.get('/users/:email', async (req, res, next) => {
 
 // POST user
 router.post('/users', async (req, res, next) => {
+  console.log(req.body);
   try{
     const user = await prisma.user.create({
       data: req.body
@@ -247,22 +248,18 @@ router.post('/reservations', async (req, res, next) => {
 
 
 // DELETE reservation
-router.delete('/reservations/:userId/:carId', async (req, res, next) => {
+router.delete('/reservations/:id', async (req, res, next) => {
+  const {id} = req.params
   try{
-    const {userId, carId} = req.params
-    console.log(userId, carId);
     const deletedReservation = await prisma.reservation.delete({
       where:{
-        carId_userId: {
-          userId: Number(userId),
-          carId: Number(carId),
-        }
+        id: Number(id)
       }
     })
     res.json(deletedReservation);
   }
   catch(error){
-    console.log(`Error DELETE /reservation/${userId}/${carId}`, error);
+    console.log(`Error DELETE /reservation/${id}`, error);
     next(error);
   }
 });

@@ -1,12 +1,20 @@
-.filter{
-    display:flex;
-    flex-direction: row;
-    width: 60%;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(0,0,0,0.6);
-    border-radius: 8px;
-    border: 0.2rem solid rgb(104, 57, 184);
-    padding: 1rem 0 1rem 0;
-    margin-bottom: 1rem;
+.filter {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0, 0.6);
+  border-radius: 8px;
+  border: 0.2rem solid rgb(104, 57, 184);
+  padding: 1rem 0 1rem 0;
+  margin-bottom: 1rem;
+}
+.file-info {
+  color: green;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+input:disabled {
+  background-color: -internal-light-dark(rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)) !important;
 }

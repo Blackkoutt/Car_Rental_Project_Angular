@@ -1,30 +1,30 @@
-import { AbstractControl, FormControl, ValidatorFn, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormControl, ValidatorFn, ValidationErrors } from "@angular/forms";
+import { isValidPhoneNumber } from "libphonenumber-js";
 
 export function IsValueStartsWithUppercase(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const value: string = control.value;
-    
-    const startsWithUppercaseRegEx:RegExp = /^[A-ZĄĆĘŁŃÓŚŹŻ]/;
 
-    const startsWithUppercase:boolean = startsWithUppercaseRegEx.test(value);
+    const startsWithUppercaseRegEx: RegExp = /^[A-ZĄĆĘŁŃÓŚŹŻ]/;
 
-    return startsWithUppercase ? null : {startsWithUppercase: true }
+    const startsWithUppercase: boolean = startsWithUppercaseRegEx.test(value);
 
-  }
+    return startsWithUppercase ? null : { startsWithUppercase: true };
+  };
 }
 export function IsAlphanumericValue(): ValidatorFn {
   return (control: AbstractControl) => {
     const value: string = control.value;
 
-    const alphanumericRegEx:RegExp = /^[a-zA-Z0-9\s]+$/;
+    const alphanumericRegEx: RegExp = /^[a-zA-Z0-9\s]+$/;
 
-    const hasOnlyAlphanumeric:boolean = alphanumericRegEx.test(value);
+    const hasOnlyAlphanumeric: boolean = alphanumericRegEx.test(value);
 
-    return hasOnlyAlphanumeric? null : {hasOnlyAlphanumeric:true};
-  }
+    return hasOnlyAlphanumeric ? null : { hasOnlyAlphanumeric: true };
+  };
 }
 
-export function IsCorrectSeatsCount(typeControl:FormControl): ValidatorFn {
+export function IsCorrectSeatsCount(typeControl: FormControl): ValidatorFn {
   return (control: AbstractControl) => {
     const seatsValue = +control.value;
 
@@ -32,29 +32,28 @@ export function IsCorrectSeatsCount(typeControl:FormControl): ValidatorFn {
 
     const isCorrectSeatsCount: boolean = allowedSeats.includes(seatsValue);
 
-    return isCorrectSeatsCount ? null : { CorrectSeatsCount: true }
-
-  }
+    return isCorrectSeatsCount ? null : { CorrectSeatsCount: true };
+  };
 }
 function GetAllowedSeats(type: string): number[] {
   switch (type) {
-    case 'SUV':
+    case "SUV":
       return [4, 5, 6, 7];
-    case 'Coupe':
+    case "Coupe":
       return [2, 4];
-    case 'Kabriolet':
+    case "Kabriolet":
       return [2, 4, 5];
-    case 'Kompakt':
-      return [2, 4, 5]
-    case 'Mini Van':
+    case "Kompakt":
+      return [2, 4, 5];
+    case "Mini Van":
       return [3, 4, 5];
-    case 'Van':
+    case "Van":
       return [6, 7];
-    case 'Sedan':
+    case "Sedan":
       return [4, 5];
-    case 'Hatchback':
+    case "Hatchback":
       return [4, 5];
-    case 'Kombi':
+    case "Kombi":
       return [5];
     default:
       return [];
@@ -62,13 +61,13 @@ function GetAllowedSeats(type: string): number[] {
 }
 export function TypeValidator(): ValidatorFn {
   return (control: AbstractControl) => {
-    const types:string[] = ["SUV", "Coupe", "Kabriolet", "Kompakt", "Mini Van", "Van", "Sedan", "Hatchback", "Kombi"];
+    const types: string[] = ["SUV", "Coupe", "Kabriolet", "Kompakt", "Mini Van", "Van", "Sedan", "Hatchback", "Kombi"];
     const value: string = control.value;
 
-    const isValidType:boolean = types.includes(value);
+    const isValidType: boolean = types.includes(value);
 
     return isValidType ? null : { validType: true };
-  }
+  };
 }
 export function DateValidator(): ValidatorFn {
   return (control: AbstractControl) => {
@@ -76,11 +75,11 @@ export function DateValidator(): ValidatorFn {
 
     const inputDate = new Date(value);
 
-    const minDate = new Date('2010-01-01');
+    const minDate = new Date("2010-01-01");
     const maxDate = new Date();
 
-    return (inputDate >= minDate && inputDate <= maxDate) ? null : { validDate: true }
-  }
+    return inputDate >= minDate && inputDate <= maxDate ? null : { validDate: true };
+  };
 }
 export function StartDateValidator(): ValidatorFn {
   return (control: AbstractControl) => {
@@ -92,12 +91,21 @@ export function StartDateValidator(): ValidatorFn {
 
     const isValid = inputDate > currentDate;
 
-    console.log('Validation Result:', isValid);
+    console.log("Validation Result:", isValid);
 
     return isValid ? null : { validStartDate: true };
-  }
+  };
 }
-export function NineDigitValidator(): ValidatorFn {
+export function ValidatePhoneNumber(): ValidatorFn {
+  return (control: AbstractControl) => {
+    const value: string = control.value;
+    console.log(value);
+    console.log(isValidPhoneNumber(value, "PL"));
+
+    return isValidPhoneNumber(value, "PL") ? null : { validPhoneNumber: true };
+  };
+}
+/*export function NineDigitValidator(): ValidatorFn {
   return (control: AbstractControl)=> {
    
     const value: number = control.value;
@@ -107,16 +115,14 @@ export function NineDigitValidator(): ValidatorFn {
 
     return isValid ? null : { nineDigit: true};
   };
-}
+}*/
 export function endOfReservationValidator(control: AbstractControl): ValidationErrors | null {
-  const startOfReservation = control.root?.get('start_of_reservation')?.value;
+  const startOfReservation = control.root?.get("start_of_reservation")?.value;
   const endOfReservation = control.value;
 
   if (startOfReservation && endOfReservation && endOfReservation < startOfReservation) {
-      return { invalidEndDate: true };
+    return { invalidEndDate: true };
   }
 
   return null;
 }
-
-

@@ -1,65 +1,63 @@
 .res-details-container {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
-.back_button{
-    margin:0;
+.back_button {
+  margin: 0;
 }
-.back_button>button
-{
-    background-color: #8824f9;
-    border: none;
-    border-radius: 5px;
-    padding: 0.3rem;
-    font-size: 1rem;
-    color:#fff;
+.back_button > button {
+  background-color: #8824f9;
+  border: none;
+  border-radius: 5px;
+  padding: 0.3rem;
+  font-size: 1rem;
+  color: #fff;
 }
-.back_button>button:hover{
-    background-color: #6602d7;
-    cursor: pointer;
+.back_button > button:hover {
+  background-color: #6602d7;
+  cursor: pointer;
 }
 .res-details-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-    background-color: #494646; /* Szary kolor tła */
-    padding: 20px;
-    border-radius: 10px; /* Zaokrąglony narożnik */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Cień */
+  background-color: #494646; /* Szary kolor tła */
+  padding: 20px;
+  border-radius: 10px; /* Zaokrąglony narożnik */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Cień */
 }
-.user-info{
-    border-right: 0.07rem dashed black;
-    padding-right: 1.5rem;
-    padding-bottom: 1rem;
+.user-info {
+  border-right: 0.07rem dashed black;
+  padding-right: 1.5rem;
+  padding-bottom: 1rem;
 }
-.car-info{
-    padding-left: 1.5rem;
-    padding-bottom: 1rem;
+.car-info {
+  padding-left: 1.5rem;
+  padding-bottom: 1rem;
 }
-.info-header{
-    font-size: 1.2rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.info-header {
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.res-info{
-    border-top: 0.07rem dashed black;
-    padding-top: 1rem;
+.res-info {
+  border-top: 0.07rem dashed black;
+  padding-top: 1rem;
 }
-.flex-row{
-    display:flex;
-    flex-direction: row;
+.flex-row {
+  display: flex;
+  flex-direction: row;
 }
 .res-detail-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 10px;
 }
 .detail-label {
-    font-weight: bold;
-    margin-right: 10px;
+  font-weight: bold;
+  margin-right: 10px;
 }
-  
