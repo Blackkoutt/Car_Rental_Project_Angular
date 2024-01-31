@@ -63,19 +63,13 @@
         <p *ngIf="controls['manufacturer'].errors?.['required']">Nazwa producenta jest wymagana!</p>
         <p *ngIf="controls['manufacturer'].errors?.['maxlength']">Nazwa producenta może mieć co najwyżej 50 znaków.</p>
         <p *ngIf="controls['manufacturer'].errors?.['minlength']">Nazwa producenta musi mieć conajmniej 3 znaki.</p>
-        <p *ngIf="controls['manufacturer'].hasError('startsWithUppercase')">
-          Nazwa producenta musi zaczynać się od wielkiej litery.
-        </p>
-        <p *ngIf="controls['manufacturer'].hasError('hasOnlyAlphanumeric')">
-          Nazwa producenta może składać się tylko z znaków i cyfr.
-        </p>
+        <p *ngIf="controls['manufacturer'].hasError('startsWithUppercase')">Nazwa producenta musi zaczynać się od wielkiej litery.</p>
+        <p *ngIf="controls['model'].hasError('hasOnlyAlphanumeric')">Nazwa modelu może składać się tylko z znaków i cyfr.</p>
       </div>
       <div class="text-danger">
         <p *ngIf="controls['model'].errors?.['required']">Nazwa modelu jest wymagana!</p>
         <p *ngIf="controls['model'].errors?.['maxlength']">Nazwa modelu może mieć co najwyżej 50 znaków.</p>
-        <p *ngIf="controls['model'].hasError('hasOnlyAlphanumeric')">
-          Nazwa modelu może składać się tylko z znaków i cyfr.
-        </p>
+        <p *ngIf="controls['model'].hasError('hasOnlyAlphanumeric')">Nazwa modelu może składać się tylko z znaków i cyfr.</p>
       </div>
       <div class="text-danger">
         <p *ngIf="controls['date_of_manufacture'].errors?.['required']">Data produkcji jest wymagana!</p>
@@ -85,9 +79,7 @@
       </div>
       <div class="text-danger">
         <p *ngIf="controls['available_count'].errors?.['required']">Liczba dostępnych samochodów jest wymagana!</p>
-        <p *ngIf="controls['available_count'].errors?.['min']">
-          Liczba dostępnych samochodów nie może być mniejsza od 0!
-        </p>
+        <p *ngIf="controls['available_count'].errors?.['min']">Liczba dostępnych samochodów nie może być mniejsza od 0!</p>
       </div>
       <div class="text-danger">
         <p *ngIf="controls['rental_cost'].errors?.['required']">Koszt wynajęcia samochodu jest wymagany!</p>
@@ -104,9 +96,7 @@
       </div>
       <div class="text-danger">
         <p *ngIf="controls['type'].errors?.['required']">Typ samochodu jest wymagany!</p>
-        <p *ngIf="controls['type'].hasError('startsWithUppercase')">
-          Typ samochodu musi zaczynać się od wielkiej litery.
-        </p>
+        <p *ngIf="controls['type'].hasError('startsWithUppercase')">Typ samochodu musi zaczynać się od wielkiej litery.</p>
         <p *ngIf="controls['type'].hasError('validType')">Wypożyczalnia nie oferuje samochodów o podanym typie.</p>
       </div>
     </div>

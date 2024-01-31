@@ -8,7 +8,7 @@
   border-radius: 8px;
   border: 0.2rem solid rgb(104, 57, 184);
   padding: 1rem 0 1rem 0;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 .file-info {
   color: green;
@@ -17,4 +17,35 @@
 }
 input:disabled {
   background-color: -internal-light-dark(rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3)) !important;
+}
+.download_button {
+  background-color: #8824f9;
+  border: none;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #fff;
+  padding: 0.3rem;
+  transition: 2s ease forwards;
+  animation: SlideTop 2s ease forwards;
+}
+.errors {
+  margin-top: 1.5rem;
+}
+.discount_message {
+  font-size: 0.7rem;
+}
+.actual_discount_message {
+  margin: 0;
+}
+@keyframes SlideTop {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
 }

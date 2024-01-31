@@ -70,9 +70,7 @@ export class AddCarComponent {
     if (event.target.value === "") {
       this.resetTypeSeatsAndNameControl();
     } else {
-      let typeNames: string[] = this.types
-        .filter((type) => type.SeatsCount === Number(event.target.value))
-        .map((type) => type.Name);
+      let typeNames: string[] = this.types.filter((type) => type.SeatsCount === Number(event.target.value)).map((type) => type.Name);
       this.type_names = [...typeNames];
     }
   }
@@ -80,9 +78,7 @@ export class AddCarComponent {
     if (event.target.value === "") {
       this.resetTypeSeatsAndNameControl();
     } else {
-      let typeSeats: number[] = this.types
-        .filter((type) => type.Name === event.target.value)
-        .map((type) => type.SeatsCount);
+      let typeSeats: number[] = this.types.filter((type) => type.Name === event.target.value).map((type) => type.SeatsCount);
       this.seats = [...typeSeats];
       this.seats.sort((a: number, b: number) => a - b);
     }

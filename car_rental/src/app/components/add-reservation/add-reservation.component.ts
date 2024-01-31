@@ -13,6 +13,7 @@ import { distinctUntilChanged } from "rxjs/operators";
 import { UserService } from "src/app/services/user.service";
 import { UserData } from "src/app/models/user";
 import { PdfService } from "src/app/services/pdf.service";
+import { differenceInDays } from "date-fns";
 
 @Component({
   selector: "app-add-reservation",
@@ -25,9 +26,12 @@ export class AddReservationComponent implements OnInit {
   car: CarData | undefined;
   formModel: FormGroup;
   showErrors: boolean = false;
+  downloadButtonVisible: boolean = false;
   manufacturerName: string | undefined;
   totalCost: number | undefined;
   downloadLink: string | undefined;
+  discountMessage: string = "";
+  actualDiscountMessage: string = "";
   private dateSubscription: Subscription | undefined;
   private startDate: Date | undefined;
   private endDate: Date | undefined;
@@ -64,27 +68,51 @@ export class AddReservationComponent implements OnInit {
         //this.downloadReservationPdf();
 
         // Jeśli trzeba to można tu ustawić wszystko pozostałe
-        this.formModel.get("car_id")?.setValue(this.car?.Id);
+        //this.formModel.get("car_id")?.setValue(this.car?.Id);
+        this.formService.setInitialValuesReservationInfoForm(this.formModel, this.car?.RentalCost);
       });
     });
 
     this.dateSubscription = this.formModel.get("end_of_reservation")?.valueChanges.subscribe((value) => {
       this.endDate = value;
+      this.isUserHaveDiscount();
       this.calculateTotalCost(this.startDate, this.endDate);
     });
     this.dateSubscription = this.formModel.get("start_of_reservation")?.valueChanges.subscribe((value) => {
       this.startDate = value;
+      this.isUserHaveDiscount();
       this.calculateTotalCost(this.startDate, this.endDate);
     });
+
     // Subskrybuj zmiany daty początkowej i końcowej
   }
 
+  isUserHaveDiscount(): void {
+    if (this.endDate !== undefined && this.startDate !== undefined) {
+      const daysDifference = differenceInDays(this.endDate, this.startDate);
+      console.log("diff", daysDifference);
+      if (daysDifference === 0 || daysDifference >= 10) {
+        this.discountMessage = "";
+      }
+      if (daysDifference < 5 && daysDifference > 0) {
+        this.discountMessage = `Jeśli wydłużysz rezerwację o ${5 - daysDifference} dni otrzymasz zniżkę 5%!`;
+      }
+      if (daysDifference >= 5 && daysDifference < 10) {
+        this.actualDiscountMessage = "Przyznana zniżka wynosi 5%";
+        this.discountMessage = `Jeśli wydłużysz rezerwację o ${10 - daysDifference} dni otrzymasz zniżkę 10%!`;
+      }
+      if (daysDifference >= 10) {
+        this.actualDiscountMessage = "Przyznana zniżka wynosi 10%";
+      }
+    }
+  }
   isDownloadButtonVisible(): boolean | undefined {
     for (const controlName in this.formModel.controls) {
       if (controlName !== "pdf_file" && !this.formModel.controls[controlName].valid) {
         return false;
       }
     }
+    this.downloadButtonVisible = true;
     return true;
   }
 

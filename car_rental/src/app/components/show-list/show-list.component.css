@@ -79,17 +79,6 @@
 .search_div:nth-child(2) {
   margin-left: 4rem;
 }
-.table-div {
-  font-size: 0.8rem;
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-self: center;
-  margin-left: auto;
-  margin-right: auto;
-  animation: ZoomIn 0.5s ease-in-out;
-}
 .modify_car {
   display: flex;
   background-color: black;
@@ -118,23 +107,41 @@ dialog {
 .cancel_button_dialog:hover {
   background-color: #0060dd;
 }
+.table-div {
+  font-size: 0.8rem;
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  animation: ZoomIn 0.5s ease-in-out;
+}
+.table_inner_div {
+  width: 100%;
+}
 .success_dialog_div {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
-@media (max-width: 950) {
-  .search_div {
-    width: 10rem;
-  }
-}
+
 @media (max-width: 1250px) {
   .search_div:nth-child(2) {
     margin-left: 1rem;
   }
 }
-@media (max-width: 900px) {
+@media (max-width: 590px) {
+  .search_div {
+    width: 10rem;
+  }
+  .search_div > select {
+    width: 10rem;
+  }
+}
+@media (max-width: 1130px) {
   .filter {
     flex-direction: column;
   }

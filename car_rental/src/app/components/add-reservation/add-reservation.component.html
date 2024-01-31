@@ -7,50 +7,49 @@
       <div class="half">
         <div class="form_input">
           <label for="name">Imię:</label>
-          <input id="name" formControlName="name" type="text" autocomplete="off" />
+          <input id="name" class="form-control form-control-sm" formControlName="name" type="text" autocomplete="off" />
         </div>
         <div class="form_input">
           <label for="surname">Nazwisko:</label>
-          <input id="surname" formControlName="surname" type="text" autocomplete="off" />
+          <input id="surname" class="form-control form-control-sm" formControlName="surname" type="text" autocomplete="off" />
         </div>
         <div class="form_input">
           <label for="email">Email:</label>
-          <input id="email" formControlName="email" type="email" autocomplete="off" />
+          <input id="email" class="form-control form-control-sm" formControlName="email" type="email" autocomplete="off" />
         </div>
       </div>
       <div class="half">
         <div class="form_input">
           <label for="phoneNumber">Numer telefonu:</label>
-          <input id="phoneNumber" formControlName="phoneNumber" type="phone" />
+          <input id="phoneNumber" class="form-control form-control-sm" formControlName="phoneNumber" type="phone" />
         </div>
         <div class="form_input">
           <label for="start_of_reservation">Początek rezerwacji:</label>
-          <input id="start_of_reservation" formControlName="start_of_reservation" type="date" />
+          <input id="start_of_reservation" class="form-control form-control-sm" formControlName="start_of_reservation" type="date" />
         </div>
         <div class="form_input">
           <label for="end_of_reservation">Koniec rezerwacji:</label>
-          <input id="end_of_reservation" formControlName="end_of_reservation" type="date" />
+          <input id="end_of_reservation" class="form-control form-control-sm" formControlName="end_of_reservation" type="date" />
         </div>
       </div>
     </div>
     <div class="form_input">
       <label for="pdf_file">Plik pdf z potwierdzeniem rezerwacji</label>
-      <input
-        class="form-control form-control-sm"
-        type="file"
-        id="pdf_file"
-        formControlName="pdf_file"
-        accept="application/pdf" />
+      <input class="form-control form-control-sm" type="file" id="pdf_file" formControlName="pdf_file" accept="application/pdf" />
     </div>
-    <p class="file-info" *ngIf="!isDownloadButtonVisible()">
+    <p class="file-info" *ngIf="!isDownloadButtonVisible() && !this.downloadButtonVisible">
       Przycisk do pobrania pliku zostanie wyświetlony po poprawnym wypełnieniu formularza
     </p>
-    <button (click)="downloadPdf()" *ngIf="isDownloadButtonVisible()" type="button">Pobierz PDF</button>
+    <button (click)="downloadPdf()" *ngIf="isDownloadButtonVisible() || this.downloadButtonVisible" type="button" class="download_button">
+      Pobierz PDF
+    </button>
 
     <p class="filter">Koszt całkowity: {{ formModel.get("total_cost")?.value | number : "1.2" }} zł</p>
+    <p class="actual_discount_message">{{ actualDiscountMessage }}</p>
+    <p class="discount_message">{{ discountMessage }}</p>
 
     <div>
-      <input (click)="showPotentialErrors()" type="submit" value="Zatwierdź" />
+      <input (click)="showPotentialErrors()" type="submit" value="Zatwierdź" [disabled]="!formModel.valid" />
     </div>
   </form>
   <div class="errors">
@@ -61,9 +60,7 @@
         <p *ngIf="controls['name'].hasError('startsWithUppercase')">Imie musi zaczynać się od wielkiej litery.</p>
       </div>
       <div class="text-danger">
-        <p *ngIf="controls['pdf_file'].errors?.['required']">
-          Należy wgrać podpisany plik pdf z potwierdzeniem rezerwacji !
-        </p>
+        <p *ngIf="controls['pdf_file'].errors?.['required']">Należy wgrać podpisany plik pdf z potwierdzeniem rezerwacji !</p>
       </div>
       <div class="text-danger">
         <p *ngIf="controls['surname'].errors?.['required']">Nazwisko jest wymagane!</p>
@@ -81,15 +78,11 @@
       </div>
       <div class="text-danger">
         <p *ngIf="controls['start_of_reservation'].errors?.['required']">Data startu jest wymagana!</p>
-        <p *ngIf="controls['start_of_reservation'].hasError('validStartDate')">
-          Data nie moze być wcześniejsza niż obecna data
-        </p>
+        <p *ngIf="controls['start_of_reservation'].hasError('validStartDate')">Data nie moze być wcześniejsza niż obecna data</p>
       </div>
       <div class="text-danger">
         <p *ngIf="controls['end_of_reservation'].errors?.['required']">Data końcowa jest wymagana!</p>
-        <p *ngIf="controls['end_of_reservation'].hasError('invalidEndDate')">
-          Data końcowa nie moze być wcześcniej niż data początkowa!
-        </p>
+        <p *ngIf="controls['end_of_reservation'].hasError('invalidEndDate')">Data końcowa nie moze być wcześcniej niż data początkowa!</p>
       </div>
     </div>
   </div>
