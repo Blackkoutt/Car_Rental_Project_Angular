@@ -5,6 +5,7 @@
   align-items: center;
   /*background-color: #191d21;*/
 }
+
 .nav-list {
   list-style-type: none;
   display: flex;
@@ -14,8 +15,82 @@
   justify-content: center;
   margin-right: 2rem;
 }
+.nav-list-collapsed {
+  list-style-type: none;
+  margin: 0;
+  padding: 0.1rem 1rem 0.1rem 1rem;
+}
+.nav-list-collapsed > li {
+  padding: 0.1rem 0 0.1rem 0;
+}
+.nav-list-collapsed > li > a:hover {
+  color: #d1d1d1;
+  text-decoration: underline;
+}
+.nav-list-collapsed > li > a:focus {
+  color: #d1d1d1;
+  text-decoration: underline;
+}
+.nav-list-collapsed > li:not(:first-child) {
+  border-top: 1px dashed black;
+}
+.collapsed_nav:hover {
+  cursor: pointer;
+}
+.collapsed_nav:focus {
+  border: 1px black solid;
+}
+.collapsed_nav > i {
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.collapsed_nav {
+  display: none;
+  width: 2.8rem;
+  padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+  margin: 0 0.5rem 0 0;
+  background-color: #8824f9;
+  border-radius: 5px;
+}
+.default_nav {
+  display: block;
+}
+.accordion {
+  display: none;
+}
+.accordion-content {
+  position: absolute;
+  background-color: #8824f9;
+  border-radius: 10px;
+  top: 3.8rem;
+  right: 0.5rem;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 500ms;
+}
+.accordion-content_active {
+  grid-template-rows: 1fr;
+}
+.accordion-content > div {
+  overflow: hidden;
+}
+@media (max-width: 1000px) {
+  .default_nav {
+    display: none;
+  }
+  .collapsed_nav {
+    display: block;
+  }
+  .accordion {
+    display: block;
+  }
+}
 .nav-list li:nth-child(2) {
   margin: 0 1.5rem 0 1.5rem;
+}
+.nav-list li:nth-child(3) {
+  margin: 0 1.5rem 0;
 }
 .nav-list li a:hover {
   color: #8824f9;
@@ -46,7 +121,8 @@
   margin: auto;
 }
 #info {
-  height: 95vh;
+  height: 95%;
+  margin: 5.5rem 0 7rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -83,6 +159,14 @@
   font-size: 4.5rem;
   margin-top: 3rem;
   background-color: #191d21;
+}
+@media (max-width: 750px) {
+  .socials {
+    flex-direction: column;
+  }
+  .socials > a {
+    width: 100%;
+  }
 }
 .insta {
   padding: 1rem 2rem 1rem 2rem;

@@ -134,6 +134,38 @@ router.get('/manufacturers', async (req, res, next) => {
   }
 });
 
+// POST manufacturer
+router.post('/manufacturers', async (req, res, next) => {
+  try{
+    const man = await prisma.manufacturer.create({
+      data: req.body
+    })
+    console.log(req.body);
+    res.json(man);
+  }
+  catch(error){
+    console.log(`Error POST /manufacturers`, error);
+    next(error)
+  }
+});
+
+// Delete manufacturer
+router.delete('/manufacturers/:id', async (req, res, next) => {
+  try{
+    const {id} = req.params
+    const deletedManufacturer = await prisma.manufacturer.delete({
+      where:{
+        id: Number(id)
+      }
+    })
+    res.json(deletedManufacturer);
+  }
+  catch(error){
+    console.log(`Error DELETE /manufacturers/${id}`, error);
+    next(error);
+  }
+});
+
 
 // GET types
 router.get('/types', async (req, res, next) => {

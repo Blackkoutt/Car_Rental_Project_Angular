@@ -20,6 +20,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 35rem;
 
   background-color: #494646; /* Szary kolor tła */
   padding: 20px;
@@ -49,6 +50,21 @@
 .flex-row {
   display: flex;
   flex-direction: row;
+}
+@media (max-width: 880px) {
+  .flex-row {
+    flex-direction: column !important;
+  }
+  .car-info {
+    padding-left: 0;
+  }
+  .user-info {
+    border: none;
+    padding-right: 0;
+  }
+  .res-details-box {
+    width: 18rem;
+  }
 }
 .res-detail-item {
   display: flex;

@@ -17,11 +17,15 @@ import { AddReservationComponent } from "./components/add-reservation/add-reserv
 import { ShowReservationsComponent } from "./components/show-reservations/show-reservations.component";
 import { PageNotFoundComponentComponent } from "./components/page-not-found-component/page-not-found-component.component";
 import { ReservationDetailsComponent } from "./components/reservation-details/reservation-details.component";
+import { AddManufacturerComponent } from "./components/add-manufacturer/add-manufacturer.component";
+import { ShowManufacturersComponent } from "./components/show-manufacturers/show-manufacturers.component";
 const routes: Routes = [
   { path: "", component: ShowListComponent },
-  { path: "add", component: AddCarComponent },
-  { path: "reserve/:id", component: AddReservationComponent },
+  { path: "manufacturers", component: ShowManufacturersComponent },
   { path: "reservations", component: ShowReservationsComponent },
+  { path: "add/car", component: AddCarComponent },
+  { path: "add/manufacturer", component: AddManufacturerComponent },
+  { path: "reserve/:id", component: AddReservationComponent },
   { path: "**", component: PageNotFoundComponentComponent }
 ];
 
@@ -37,16 +41,11 @@ const routes: Routes = [
     AddReservationComponent,
     CarDetailsComponent,
     ShowReservationsComponent,
-    ReservationDetailsComponent
+    ReservationDetailsComponent,
+    AddManufacturerComponent,
+    ShowManufacturersComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
-    RouterModule.forRoot(routes)
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, FormsModule, RouterModule.forRoot(routes)],
   providers: [],
   bootstrap: [AppComponent]
 })

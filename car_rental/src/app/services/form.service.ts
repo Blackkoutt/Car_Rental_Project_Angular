@@ -22,6 +22,19 @@ export class FormService {
       type: car?.Type?.Name
     });
   }
+  setInitialValuesReservationInfoForm(formModel: FormGroup, total_cost?: number) {
+    console.log("initial values");
+    formModel.setValue({
+      name: "",
+      surname: "",
+      email: "",
+      phoneNumber: "78878",
+      start_of_reservation: this.formatDateForInput(new Date()),
+      end_of_reservation: new Date(),
+      total_cost: total_cost,
+      pdf_file: ""
+    });
+  }
   setReservationValuesIntoForm(formModel: FormGroup, reservation?: Reservation): void {
     formModel.setValue({
       car_id: reservation?.CarId,
@@ -34,7 +47,14 @@ export class FormService {
       total_cost: reservation?.Total_Cost
     });
   }
+  formatDateForInput(date: Date) {
+    let dateString: string = new Intl.DateTimeFormat().format(date);
+    dateString = dateString.split(".").reverse().join("-");
+
+    return dateString;
+  }
   parseDate(dateString?: string): string {
+    console.log("date", dateString);
     const parts: string[] | undefined = dateString?.split(".");
     if (parts === undefined) {
       return new Date().toISOString().split("T")[0];
@@ -42,42 +62,32 @@ export class FormService {
     // w JS miesiace liczone od 0 do 11
     return new Date(+parts[2], +parts[1] - 1, +parts[0] + 1).toISOString().split("T")[0];
   }
-
+  createManufacturerForm(): FormGroup {
+    return new FormGroup({
+      name: new FormControl("", [
+        Validators.required,
+        CustomValidators.IsValueStartsWithUppercase(),
+        CustomValidators.IsAlphanumericValue()
+      ])
+    });
+  }
   createForm(): FormGroup {
     //return
     return new FormGroup({
-      manufacturer: new FormControl("", [
-        Validators.required
-        /*Validators.minLength(3),
-        Validators.maxLength(50),
-        CustomValidators.IsValueStartsWithUppercase(),
-      CustomValidators.IsAlphanumericValue()*/
-      ]),
-      model: new FormControl("", [
-        Validators.required,
-        Validators.maxLength(50),
-        CustomValidators.IsAlphanumericValue()
-      ]),
+      manufacturer: new FormControl("", [Validators.required]),
+      model: new FormControl("", [Validators.required, Validators.maxLength(50), CustomValidators.IsAlphanumericValue()]),
       date_of_manufacture: new FormControl("", [Validators.required, CustomValidators.DateValidator()]),
       available_count: new FormControl("", [Validators.required, Validators.min(0)]),
       rental_cost: new FormControl("", [Validators.required, Validators.min(0), Validators.max(2000)]),
       gearbox: new FormControl(""),
-      type: new FormControl("", [
-        Validators.required,
-        CustomValidators.IsValueStartsWithUppercase(),
-        CustomValidators.TypeValidator()
-      ]),
+      type: new FormControl("", [Validators.required, CustomValidators.IsValueStartsWithUppercase(), CustomValidators.TypeValidator()]),
       seats_count: new FormControl("", [Validators.required, Validators.min(2), Validators.max(7)])
     });
   }
   createFormReservation(): FormGroup {
     //return
     return new FormGroup({
-      name: new FormControl("", [
-        Validators.required,
-        Validators.maxLength(50),
-        CustomValidators.IsValueStartsWithUppercase()
-      ]),
+      name: new FormControl("", [Validators.required, Validators.maxLength(50), CustomValidators.IsValueStartsWithUppercase()]),
       surname: new FormControl("", [
         Validators.required,
         Validators.maxLength(50),
@@ -86,12 +96,9 @@ export class FormService {
       ]),
       email: new FormControl("", [Validators.required, Validators.maxLength(50), Validators.email]),
       phoneNumber: new FormControl("", [Validators.required, CustomValidators.ValidatePhoneNumber()]),
-      car_id: new FormControl("", [Validators.required]),
+
       start_of_reservation: new FormControl("", [Validators.required, CustomValidators.StartDateValidator()]),
-      end_of_reservation: new FormControl("", [
-        Validators.required,
-        CustomValidators.endOfReservationValidator.bind(this)
-      ]),
+      end_of_reservation: new FormControl("", [Validators.required, CustomValidators.endOfReservationValidator.bind(this)]),
       total_cost: new FormControl("", [Validators.required, Validators.min(0), Validators.max(20000)]),
       pdf_file: new FormControl("", [Validators.required])
     });

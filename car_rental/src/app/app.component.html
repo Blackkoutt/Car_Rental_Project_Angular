@@ -9,15 +9,43 @@
       </a>
     </div>
     <nav>
-      <ul class="nav-list">
-        <li><a routerLink="">Strona główna</a></li>
-        <li>
-          <a appScrollTo [elementDOM]="'#cars'" routerLink="add">Dodaj pojazd</a>
-        </li>
-        <li>
-          <a appScrollTo [elementDOM]="'#cars'" routerLink="reservations">Wypożyczenia</a>
-        </li>
-      </ul>
+      <div class="default_nav">
+        <ul class="nav-list">
+          <li><a routerLink="">Strona główna</a></li>
+          <li>
+            <a appScrollTo [elementDOM]="'#cars'" routerLink="add/car">Dodaj pojazd</a>
+          </li>
+          <li>
+            <a appScrollTo [elementDOM]="'#cars'" routerLink="manufacturers">Producenci</a>
+          </li>
+          <li>
+            <a appScrollTo [elementDOM]="'#cars'" routerLink="reservations">Wypożyczenia</a>
+          </li>
+        </ul>
+      </div>
+      <button (click)="openCloseAccordion()" class="collapsed_nav">
+        <div class="accordion-panel">
+          <i class="fa-solid fa-list"></i>
+        </div>
+      </button>
+      <div class="accordion">
+        <div class="accordion-content">
+          <div>
+            <ul class="nav-list-collapsed">
+              <li><a routerLink="">Strona główna</a></li>
+              <li>
+                <a appScrollTo [elementDOM]="'#cars'" routerLink="add/car">Dodaj pojazd</a>
+              </li>
+              <li>
+                <a appScrollTo [elementDOM]="'#cars'" routerLink="manufacturers">Producenci</a>
+              </li>
+              <li>
+                <a appScrollTo [elementDOM]="'#cars'" routerLink="reservations">Wypożyczenia</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
@@ -27,11 +55,11 @@
       <div class="welcome">
         <h2>Witaj w CarRental</h2>
         <p>
-          CarRental jest serwisem, który umożliwia wynajmowanie samochodów z łatwością i wygodą. Oferujemy szeroki wybór
-          pojazdów, dostosowanych do różnych potrzeb i preferencji. Nie ważne, czy planujesz rodzinny wypad, służbową
-          podróż, czy weekendowy wyjazd - CarRental ma dla Ciebie odpowiednią ofertę. Nasza flota obejmuje zarówno
-          starsze jak i nowoczesne pojazdy, z różnymi opcjami wyposażenia, więc z pewnością znajdziesz coś dla siebie.
-          Wynajmuj samochody z CarRental - z nami podróżowanie staje się jeszcze łatwiejsze!
+          CarRental jest serwisem, który umożliwia wynajmowanie samochodów z łatwością i wygodą. Oferujemy szeroki wybór pojazdów,
+          dostosowanych do różnych potrzeb i preferencji. Nie ważne, czy planujesz rodzinny wypad, służbową podróż, czy weekendowy wyjazd -
+          CarRental ma dla Ciebie odpowiednią ofertę. Nasza flota obejmuje zarówno starsze jak i nowoczesne pojazdy, z różnymi opcjami
+          wyposażenia, więc z pewnością znajdziesz coś dla siebie. Wynajmuj samochody z CarRental - z nami podróżowanie staje się jeszcze
+          łatwiejsze!
         </p>
         <input routerLink="" appScrollTo [elementDOM]="'#cars'" type="button" value="Sprawdź flotę pojazdów" />
       </div>

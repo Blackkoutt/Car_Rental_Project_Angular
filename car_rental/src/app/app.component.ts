@@ -7,4 +7,15 @@ import { Component, ElementRef, ViewChild } from "@angular/core";
 })
 export class AppComponent {
   isAdd: boolean = true;
+
+  openCloseAccordion = (): void => {
+    const accordion = document.querySelector(".accordion-content");
+    accordion?.classList.toggle("accordion-content_active");
+    const handleEscapeKeyPress = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        accordion?.classList.remove("accordion-content_active");
+      }
+    };
+    document.addEventListener("keydown", handleEscapeKeyPress);
+  };
 }

@@ -20,8 +20,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   background-color: #494646; /* Szary kolor tła */
+  width: 15rem;
   padding: 20px;
   border-radius: 10px; /* Zaokrąglony narożnik */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Cień */
