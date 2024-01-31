@@ -1,0 +1,18 @@
+.error-404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 10px solid #8824f9;
+  border-radius: 20px;
+  padding: 0.5rem 4rem 0.5rem 4rem;
+  background-color: rgb(0, 0, 0, 0.7);
+}
+.error-404 > p {
+  font-size: 1.5rem;
+}
+.error-big {
+  font-size: 10rem;
+  font-weight: 900;
+  color: #8824f9;
+}

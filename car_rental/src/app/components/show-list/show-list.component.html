@@ -1,0 +1,89 @@
+<div *ngIf="isDetailsVisible">
+  <app-car-details [car]="carDetails" (visibility)="SetVisibility($event)"></app-car-details>
+</div>
+<div *ngIf="!isDetailsVisible" class="table-div">
+  <div class="filter">
+    <div class="search_div">
+      <label for="select_criteria">Szukaj według</label>
+      <select id="select_criteria" [formControl]="searchCriteriaControl">
+        <option value="manufacturer">Producent</option>
+        <option value="model">Model</option>
+        <option value="date_of_manufacture">Data produkcji</option>
+        <option value="available_count">Liczba dostępnych</option>
+        <option value="rental_cost">Koszt wynajęcia</option>
+        <option value="seats_count">Liczba miejsc</option>
+        <option value="gearbox">Skrzynia biegów</option>
+        <option value="type">Typ</option>
+      </select>
+    </div>
+    <div class="search_div">
+      <label for="search">Wyszukaj</label>
+      <input id="search" type="text" [formControl]="searchValueControl" />
+    </div>
+  </div>
+
+  <div class="table-div">
+    <div class="table_inner_div">
+      <div class="table-responsive">
+        <table class="table table-dark table-hovers">
+          <thead>
+            <tr>
+              <th scope="col">Producent</th>
+              <th scope="col">Model</th>
+              <th scope="col">Data produkcji</th>
+              <th scope="col">Liczba dostępnych</th>
+              <th scope="col">Koszt wynajęcia</th>
+              <th scope="col">Liczba miejsc</th>
+              <th scope="col">Skrzynia biegów</th>
+              <th scope="col">Typ</th>
+              <th scope="col">Akcja</th>
+            </tr>
+          </thead>
+
+          <tbody class="table-group-divider">
+            <ng-container *ngFor="let car of cars | searchCar : searchValue : searchCriteria">
+              <tr>
+                <td>{{ car.Manufacturer?.Name }}</td>
+                <td>{{ car.Model }}</td>
+                <td>{{ car.DateOfManufacture }}</td>
+                <td>{{ car.AvailableCount }}</td>
+                <td>{{ car.RentalCost | currency : "zł" : "symbol" : "1.2-2" }}</td>
+                <td>{{ car.Type?.SeatsCount }}</td>
+                <td>{{ car.GearBox ? "Automatyczna" : "Manualna" }}</td>
+                <td>{{ car.Type?.Name }}</td>
+                <td class="action_buttons">
+                  <!-- <button appChangeEditButton [carInput]="car" (outputCarEvent)="fun($event)" (click)="editCar(car)">Modyfikuj</button> -->
+                  <button class="modify_button" appChangeEditButton [carInput]="car" (outputCarEvent)="editCar($event)">Modyfikuj</button>
+                  <!--<a [routerLink]="['/modify',car.Id]" ><button (click)="editCar(car)">Modyfikuj</button></a>-->
+                  <a (click)="ChangeDetailsVisibility(car)"><button class="details_button">Szczegóły/Wynajem</button></a>
+                  <button (click)="ShowDialog(car)" class="delete_button">Usuń</button>
+                </td>
+              </tr>
+              <tr *ngIf="carToEdit === car">
+                <td colspan="9">
+                  <app-edit-car [car]="carToEdit" (carUpdated)="updateCarsList($event)"></app-edit-car>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <dialog #deleteDialog class="delete_dialog">
+    <form method="dialog">
+      <div>
+        <p></p>
+        <button class="delete_button_dialog" type="submit">Usuń</button>
+        <button class="cancel_button_dialog" type="reset">Anuluj</button>
+      </div>
+    </form>
+  </dialog>
+  <dialog #successDialog class="success_dialog">
+    <div class="success_dialog_div">
+      <div></div>
+      <p>Pomyślnie usunięto rezerwację</p>
+    </div>
+  </dialog>
+</div>
+<!--<app-edit-car [car]="carToEdit" (carUpdated)="updateCarsList($event)"></app-edit-car>-->

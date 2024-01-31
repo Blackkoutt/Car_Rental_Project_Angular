@@ -1,0 +1,24 @@
+<div class="edit-outer-div">
+  <form [formGroup]="formModel" (ngSubmit)="formModel.valid && addManufacturer($event)">
+    <h3>Dodanie producenta</h3>
+    <div class="edit-inner-div">
+      <div class="form_input">
+        <label for="name">Nazwa producenta:</label>
+        <input id="name" formControlName="name" type="text" />
+      </div>
+    </div>
+    <div *ngIf="showErrors">
+      <div class="text-danger">
+        <p *ngIf="controls['name'].errors?.['required']">Nazwa producenta jest wymagana!</p>
+        <p *ngIf="controls['name'].hasError('startsWithUppercase')">Nazwa producenta musi zaczynać się od wielkiej litery.</p>
+        <p *ngIf="controls['name'].hasError('hasOnlyAlphanumeric')">Nazwa producenta może składać się tylko z znaków i cyfr.</p>
+      </div>
+    </div>
+    <div *ngIf="showManufacturerExistsError">
+      <p class="text-danger">Podany producent już istnieje!</p>
+    </div>
+    <div>
+      <input (click)="showPotentialErrors()" type="submit" value="Zatwierdź" />
+    </div>
+  </form>
+</div>
