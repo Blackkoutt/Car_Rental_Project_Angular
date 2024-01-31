@@ -12,7 +12,6 @@
         <option value="available_count">Liczba dostępnych</option>
         <option value="rental_cost">Koszt wynajęcia</option>
         <option value="seats_count">Liczba miejsc</option>
-        <option value="gearbox">Skrzynia biegów</option>
         <option value="type">Typ</option>
       </select>
     </div>
@@ -34,7 +33,6 @@
               <th scope="col">Liczba dostępnych</th>
               <th scope="col">Koszt wynajęcia</th>
               <th scope="col">Liczba miejsc</th>
-              <th scope="col">Skrzynia biegów</th>
               <th scope="col">Typ</th>
               <th scope="col">Akcja</th>
             </tr>
@@ -49,7 +47,6 @@
                 <td>{{ car.AvailableCount }}</td>
                 <td>{{ car.RentalCost | currency : "zł" : "symbol" : "1.2-2" }}</td>
                 <td>{{ car.Type?.SeatsCount }}</td>
-                <td>{{ car.GearBox ? "Automatyczna" : "Manualna" }}</td>
                 <td>{{ car.Type?.Name }}</td>
                 <td class="action_buttons">
                   <!-- <button appChangeEditButton [carInput]="car" (outputCarEvent)="fun($event)" (click)="editCar(car)">Modyfikuj</button> -->

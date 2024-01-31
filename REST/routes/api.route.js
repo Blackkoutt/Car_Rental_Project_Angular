@@ -153,6 +153,7 @@ router.post('/manufacturers', async (req, res, next) => {
 router.delete('/manufacturers/:id', async (req, res, next) => {
   try{
     const {id} = req.params
+    console.log("ID:",id)
     const deletedManufacturer = await prisma.manufacturer.delete({
       where:{
         id: Number(id)
@@ -161,7 +162,7 @@ router.delete('/manufacturers/:id', async (req, res, next) => {
     res.json(deletedManufacturer);
   }
   catch(error){
-    console.log(`Error DELETE /manufacturers/${id}`, error);
+    console.log(`Error DELETE /manufacturers`, error);
     next(error);
   }
 });

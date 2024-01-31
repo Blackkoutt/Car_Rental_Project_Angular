@@ -108,6 +108,7 @@ export class AddReservationComponent implements OnInit {
   }
   isDownloadButtonVisible(): boolean | undefined {
     for (const controlName in this.formModel.controls) {
+      console.log(controlName, this.formModel.controls[controlName].valid);
       if (controlName !== "pdf_file" && !this.formModel.controls[controlName].valid) {
         return false;
       }

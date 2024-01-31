@@ -18,9 +18,9 @@ model Car {
   rental_cost         Float
   gearbox             Boolean
   manufacturerId      Int
-  manufacturer        Manufacturer  @relation(fields: [manufacturerId], references: [id])
+  manufacturer        Manufacturer  @relation(fields: [manufacturerId], references: [id], onDelete: Cascade)
   typeId              Int
-  type                Type          @relation(fields: [typeId], references: [id])
+  type                Type          @relation(fields: [typeId], references: [id], onDelete: Cascade)
   reservation         Reservation[]
 }
 
@@ -44,8 +44,8 @@ model Reservation {
   start_of_reservation DateTime
   end_of_reservation   DateTime
   total_cost           Float
-  user                 User     @relation(fields: [userId], references: [id])
-  car                  Car      @relation(fields: [carId], references: [id])
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  car                  Car      @relation(fields: [carId], references: [id], onDelete: Cascade)
 }
 
 model User {

@@ -43,6 +43,7 @@ export class ShowManufacturersComponent {
 
   DeleteManufacturer(man: ManufacturerData) {
     console.log("tu");
+    console.log(man);
     this.manService.deleteManufacturer(man).subscribe({
       next: (response) => {
         console.log("Usunięto samochód pomyślnie:", response);
